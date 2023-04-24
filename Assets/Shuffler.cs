@@ -8,15 +8,16 @@ public sealed class Shuffler : MonoBehaviour
 
     [SerializeField] int _baseFps = 24;
     [SerializeField] ImageSource _source = null;
-    [SerializeField] float _flipTime = 0.15f;
-    [SerializeField] float _pauseTime = 1.2f;
+    [SerializeField] float _minorTime = 0.175f;
+    [SerializeField] float _majorTime = 1.2f;
 
     #endregion
 
     #region Project asset references
 
     [SerializeField, HideInInspector] Mesh _quadMesh = null;
-    [SerializeField, HideInInspector] Material _baseMaterial = null;
+    [SerializeField, HideInInspector] Material _minorMaterial = null;
+    [SerializeField, HideInInspector] Material _majorMaterial = null;
 
     #endregion
 
@@ -25,9 +26,10 @@ public sealed class Shuffler : MonoBehaviour
     const int Size = 512;
 
     DummyPipeline _pipeline;
-    MaterialPropertyBlock _baseProps;
 
-    (RenderTexture, RenderTexture) _activeFrames;
+    (MaterialPropertyBlock minor, MaterialPropertyBlock major) _props;
+
+    (RenderTexture current, RenderTexture next) _activeFrames;
     Queue<RenderTexture> _freeFrames = new Queue<RenderTexture>();
     Queue<RenderTexture> _stockFrames = new Queue<RenderTexture>();
 
@@ -42,19 +44,21 @@ public sealed class Shuffler : MonoBehaviour
         Application.targetFrameRate = _baseFps;
 
         _pipeline = new DummyPipeline(_source);
-        _baseProps = new MaterialPropertyBlock();
 
-        _activeFrames.Item1 = new RenderTexture(Size, Size, 0);
-        _activeFrames.Item2 = new RenderTexture(Size, Size, 0);
+        _props.minor = new MaterialPropertyBlock();
+        _props.major = new MaterialPropertyBlock();
 
-        for (var i = 0; i < _pauseTime / _flipTime + 1; i++)
+        _activeFrames.current = new RenderTexture(Size, Size, 0);
+        _activeFrames.next = new RenderTexture(Size, Size, 0);
+
+        for (var i = 0; i < _majorTime / _minorTime + 1; i++)
             _freeFrames.Enqueue(new RenderTexture(Size, Size, 0));
     }
 
     void ReleaseObjects()
     {
-        Destroy(_activeFrames.Item1);
-        Destroy(_activeFrames.Item2);
+        Destroy(_activeFrames.current);
+        Destroy(_activeFrames.next);
         while (_freeFrames.Count > 0) Destroy(_freeFrames.Dequeue());
         while (_stockFrames.Count > 0) Destroy(_stockFrames.Dequeue());
     }
@@ -74,16 +78,16 @@ public sealed class Shuffler : MonoBehaviour
 
             while (_stockFrames.Count > 0)
             {
-                _freeFrames.Enqueue(_activeFrames.Item2);
-                _activeFrames = (_stockFrames.Dequeue(), _activeFrames.Item1);
+                _freeFrames.Enqueue(_activeFrames.current);
+                _activeFrames = (_activeFrames.next, _stockFrames.Dequeue());
                 _progress = 0;
-                await Awaitable.WaitForSecondsAsync(_flipTime);
+                await Awaitable.WaitForSecondsAsync(_minorTime);
             }
 
             await heavyTask;
 
-            _freeFrames.Enqueue(_activeFrames.Item2);
-            _activeFrames = (heavyRT, _activeFrames.Item1);
+            _freeFrames.Enqueue(_activeFrames.current);
+            _activeFrames = (_activeFrames.next, heavyRT);
             _progress = 0;
 
             while (_freeFrames.Count > 1)
@@ -91,7 +95,7 @@ public sealed class Shuffler : MonoBehaviour
                 var rt = _freeFrames.Dequeue();
 
                 var task1 = _pipeline.ProcessLight(rt);
-                var task2 = Awaitable.WaitForSecondsAsync(_flipTime);
+                var task2 = Awaitable.WaitForSecondsAsync(_minorTime);
 
                 await task1;
                 await task2;
@@ -105,14 +109,14 @@ public sealed class Shuffler : MonoBehaviour
 
     void Update()
     {
-        _progress = Mathf.Min(1, _progress + Time.deltaTime / _flipTime);
+        _progress = Mathf.Min(1, _progress + Time.deltaTime / _minorTime);
 
-        _baseProps.SetTexture("_Texture1", _activeFrames.Item1);
-        _baseProps.SetTexture("_Texture2", _activeFrames.Item2);
-        _baseProps.SetFloat("_Progress", _progress);
+        _props.minor.SetTexture("_Texture1", _activeFrames.next);
+        _props.minor.SetTexture("_Texture2", _activeFrames.current);
+        _props.minor.SetFloat("_Progress", _progress);
 
         Graphics.RenderMesh
-          (new RenderParams(_baseMaterial) { matProps = _baseProps },
+          (new RenderParams(_minorMaterial) { matProps = _props.minor },
            _quadMesh, 0, Matrix4x4.identity);
     }
 

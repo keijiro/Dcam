@@ -349,7 +349,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseFps: 24
   _source: {fileID: 1294827506}
-  _flipTime: 0.17
-  _pauseTime: 1.2
+  _minorTime: 0.175
+  _majorTime: 1.2
   _quadMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
-  _baseMaterial: {fileID: -876546973899608171, guid: a2c759d370b5b4539807165785354adc, type: 3}
+  _minorMaterial: {fileID: -876546973899608171, guid: a2c759d370b5b4539807165785354adc, type: 3}
+  _majorMaterial: {fileID: -876546973899608171, guid: 507f70244e4354f61bc618e0b5875af2, type: 3}
