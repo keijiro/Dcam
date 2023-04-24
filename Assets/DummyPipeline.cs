@@ -17,6 +17,6 @@ public sealed class DummyPipeline
     public async Awaitable ProcessHeavy(RenderTexture dest)
     {
         await Awaitable.WaitForSecondsAsync(Random.Range(1.0f, 1.5f));
-        Graphics.Blit(_source.Texture, dest, new Vector2(1, -1), new Vector2(0, 1));
+        Graphics.Blit(_source.Texture, dest);
     }
 }
