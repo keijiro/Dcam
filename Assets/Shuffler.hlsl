@@ -1,3 +1,5 @@
+#include "Packages/jp.keijiro.noiseshader/Shader/SimplexNoise2D.hlsl"
+
 float3 SampleShuffler
   (UnityTexture2D tex1, UnityTexture2D tex2, float2 uv, float prog)
 {
@@ -24,4 +26,18 @@ void ShufflerFragment_float
         acc += SampleShuffler(tex1, tex2, uv, prog + blur * i);
 
     output = acc / SampleCount;
+}
+
+void ShufflerMajorPage_float
+  (UnityTexture2D tex, float2 uv, float seed,
+   out float3 outColor, out float outAlpha)
+{
+    float2 np = (uv + seed) * 10;
+    float n = 0.5;
+    n += SimplexNoise(np * 1) / 4;
+    n += SimplexNoise(np * 2) / 8;
+    n += SimplexNoise(np * 4) / 16;
+
+    outColor = tex2D(tex, uv).rgb;
+    outAlpha = n;
 }

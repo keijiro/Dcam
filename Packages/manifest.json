@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "com.unity.render-pipelines.universal": "15.0.5",
-    "jp.keijiro.klak.testtools": "1.1.0"
+    "jp.keijiro.klak.testtools": "1.1.0",
+    "jp.keijiro.noiseshader": "2.0.0"
   },
   "scopedRegistries": [
     {
