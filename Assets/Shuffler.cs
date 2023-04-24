@@ -47,7 +47,7 @@ public sealed class Shuffler : MonoBehaviour
         _activeFrames.Item1 = new RenderTexture(Size, Size, 0);
         _activeFrames.Item2 = new RenderTexture(Size, Size, 0);
 
-        for (var i = 0; i < _pauseTime / _flipTime; i++)
+        for (var i = 0; i < _pauseTime / _flipTime + 1; i++)
             _freeFrames.Enqueue(new RenderTexture(Size, Size, 0));
     }
 
