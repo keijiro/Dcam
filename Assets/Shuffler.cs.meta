@@ -3,7 +3,10 @@ guid: ddcdaeaf293df4db98604db40a564aad
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _source: {instanceID: 0}
+  - _quadMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  - _baseMaterial: {fileID: -876546973899608171, guid: a2c759d370b5b4539807165785354adc, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
