@@ -347,10 +347,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcdaeaf293df4db98604db40a564aad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseFps: 24
+  _displayFps: 24
   _source: {fileID: 1294827506}
+  _resourceDir: StableDiffusion
   _minorTime: 0.175
   _majorTime: 1.2
+  _minorConfig:
+    Prompt: vincent van gogh
+    Strength: 0.2
+    StepCount: 2
+    Seed: 1
+    Guidance: 6
+  _majorConfig:
+    Prompt: vincent van gogh
+    Strength: 0.5
+    StepCount: 5
+    Seed: 1
+    Guidance: 6
   _quadMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
   _minorMaterial: {fileID: -876546973899608171, guid: a2c759d370b5b4539807165785354adc, type: 3}
   _majorMaterial: {fileID: -876546973899608171, guid: 507f70244e4354f61bc618e0b5875af2, type: 3}
+  _generatorPreprocess: {fileID: 7200000, guid: 7c06db8e339994c05bc2ad5e44c940de, type: 3}
