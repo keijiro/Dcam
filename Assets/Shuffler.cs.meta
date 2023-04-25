@@ -5,10 +5,9 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - _source: {instanceID: 0}
-  - _quadMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
-  - _minorMaterial: {fileID: -876546973899608171, guid: a2c759d370b5b4539807165785354adc, type: 3}
-  - _majorMaterial: {fileID: -876546973899608171, guid: 507f70244e4354f61bc618e0b5875af2, type: 3}
-  - _generatorPreprocess: {fileID: 7200000, guid: 7c06db8e339994c05bc2ad5e44c940de, type: 3}
+  - _pageMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  - _pageMaterial: {fileID: -876546973899608171, guid: a2c759d370b5b4539807165785354adc, type: 3}
+  - _sdPreprocess: {fileID: 7200000, guid: 7c06db8e339994c05bc2ad5e44c940de, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
