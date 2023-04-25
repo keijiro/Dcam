@@ -10,16 +10,18 @@ public sealed class Shuffler : MonoBehaviour
     #region Editable attributes
 
     [SerializeField] int _displayFps = 24;
-    [SerializeField] ImageSource _source = null;
     [SerializeField] string _resourceDir = "StableDiffusion";
     [Space]
     [SerializeField] float _flipTime = 0.175f;
-    [SerializeField] float _queueLength = 10;
+    [SerializeField] float _queueLength = 9;
     [Space]
     [SerializeField] string _prompt = "Surrealistic painting by J. C. Leyendecker";
     [SerializeField] float _strength = 0.7f;
     [SerializeField] int _stepCount = 7;
     [SerializeField] float _guidance = 10;
+    [Space]
+    [SerializeField] ImageSource _source = null;
+    [SerializeField] CameraController _camera = null;
 
     #endregion
 
@@ -114,6 +116,8 @@ public sealed class Shuffler : MonoBehaviour
             var majorRT = _freeFrames.Dequeue();
             var majorTask = RunSDPipelineAsync(majorRT, cancel);
 
+            _camera.RenewTarget();
+
             // Flip all the stocked pages during the major frame generation.
             while (_stockFrames.Count > 0)
             {
@@ -132,6 +136,8 @@ public sealed class Shuffler : MonoBehaviour
             _pageFrames.stay = _pageFrames.flip;
             _pageFrames.flip = majorRT;
             (_pageProgress, _pageSpeed) = (0, 0.5f);
+
+            _camera.RenewTarget();
 
             // Generate minor frames and fill the queue.
             while (_freeFrames.Count > 1)
