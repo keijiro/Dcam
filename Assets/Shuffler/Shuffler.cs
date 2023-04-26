@@ -77,6 +77,8 @@ public sealed class Shuffler : MonoBehaviour
           (Vector3.forward * 0.01f, Quaternion.identity, Vector3.one * 2);
         _fgPage.matrix = Matrix4x4.identity;
 
+        _bgPage.props.SetFloat("_Occlusion", 1);
+
         // Stable Diffusion pipeline
         _sdPipeline = new SDPipeline(_sdPreprocess);
         Debug.Log("Loading the Stable Diffusion mode...");

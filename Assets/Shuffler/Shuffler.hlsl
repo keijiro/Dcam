@@ -12,8 +12,15 @@ float3 SampleShuffler
     return uv1.y > 0 ? c1 : c2;
 }
 
+float PseudoOcclusion(float2 uv)
+{
+    return 4 * length(max(0, abs(uv - 0.5) - 0.25));
+}
+
 void ShufflerFragment_float
-  (UnityTexture2D tex1, UnityTexture2D tex2, float2 uv, float prog, out float3 output)
+  (UnityTexture2D tex1, UnityTexture2D tex2,
+   float2 uv, float prog, float occlusion,
+   out float3 output)
 {
     const uint SampleCount = 16;
 
@@ -23,5 +30,7 @@ void ShufflerFragment_float
     for (uint i = 0; i < SampleCount; i++)
         acc += SampleShuffler(tex1, tex2, uv, prog + blur * i);
 
-    output = acc / SampleCount;
+    float occ = lerp(1, PseudoOcclusion(uv), occlusion);
+
+    output = occ * acc / SampleCount;
 }
