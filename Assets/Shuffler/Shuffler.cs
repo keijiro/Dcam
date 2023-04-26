@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using CancellationToken = System.Threading.CancellationToken;
 using ImageSource = Klak.TestTools.ImageSource;
 using ComputeUnits = MLStableDiffusion.ComputeUnits;
 using SDPipeline = MLStableDiffusion.Pipeline;
@@ -12,9 +11,9 @@ public sealed class Shuffler : MonoBehaviour
     [SerializeField] int _displayFps = 24;
     [SerializeField] string _resourceDir = "StableDiffusion";
     [Space]
-    [SerializeField] float _pauseDuration = 1;
     [SerializeField] float _flipDuration = 0.175f;
-    [SerializeField] int _flipCount = 4;
+    [SerializeField] int _queueLength = 9;
+    [SerializeField] int _insertionCount = 5;
     [Space]
     [SerializeField] string _prompt = "Surrealistic painting by J. C. Leyendecker";
     [SerializeField] float _strength = 0.7f;
@@ -38,12 +37,13 @@ public sealed class Shuffler : MonoBehaviour
 
     string ResourcePath => Application.streamingAssetsPath + "/" + _resourceDir;
 
-    // Frame queues
-    (Queue<RenderTexture> flip, Queue<RenderTexture> back) _queue;
+    // Frame queue
+    (Queue<RenderTexture> queue, RenderTexture generated,
+     RenderTexture latest, RenderTexture flip, RenderTexture oldest) _frame;
 
-    // Active page pair
-    (RenderTexture baseRT, RenderTexture flapRT,
-     MaterialPropertyBlock props, float progress, float speed) _page;
+    // Page rendering
+    (MaterialPropertyBlock props, RenderParams rparams, Matrix4x4 matrix, float time) _bgPage;
+    (MaterialPropertyBlock props, RenderParams rparams, Matrix4x4 matrix, float time) _fgPage;
 
     // Stable Diffusion pipeline
     SDPipeline _sdPipeline;
@@ -60,16 +60,22 @@ public sealed class Shuffler : MonoBehaviour
         Application.targetFrameRate = _displayFps;
 
         // Frame queues
-        _queue.flip = new Queue<RenderTexture>();
-        _queue.back = new Queue<RenderTexture>();
-        _queue.flip.Enqueue(new RenderTexture(width, width, 0));
-        for (var i = 0; i < _flipCount; i++)
-            _queue.back.Enqueue(new RenderTexture(width, width, 0));
+        _frame.queue = new Queue<RenderTexture>();
+        for (var i = 0; i < _queueLength; i++)
+            _frame.queue.Enqueue(new RenderTexture(width, width, 0));
+        _frame.generated = new RenderTexture(width, width, 0);
+        _frame.latest = new RenderTexture(width, width, 0);
+        _frame.flip = new RenderTexture(width, width, 0);
+        _frame.oldest = new RenderTexture(width, width, 0);
 
-        // Active page pair
-        _page.baseRT = new RenderTexture(width, width, 0);
-        _page.flapRT = new RenderTexture(width, width, 0);
-        _page.props = new MaterialPropertyBlock();
+        // Page rendering
+        _bgPage.props = new MaterialPropertyBlock();
+        _fgPage.props = new MaterialPropertyBlock();
+        _bgPage.rparams = new RenderParams(_pageMaterial){ matProps = _bgPage.props };
+        _fgPage.rparams = new RenderParams(_pageMaterial){ matProps = _fgPage.props };
+        _bgPage.matrix = Matrix4x4.TRS
+          (Vector3.forward * 0.01f, Quaternion.identity, Vector3.one * 2);
+        _fgPage.matrix = Matrix4x4.identity;
 
         // Stable Diffusion pipeline
         _sdPipeline = new SDPipeline(_sdPreprocess);
@@ -80,26 +86,29 @@ public sealed class Shuffler : MonoBehaviour
 
     void ReleaseObjects()
     {
-        while (_queue.flip.Count > 0) Destroy(_queue.flip.Dequeue());
-        while (_queue.back.Count > 0) Destroy(_queue.back.Dequeue());
+        while (_frame.queue.Count > 0) Destroy(_frame.queue.Dequeue());
 
-        Destroy(_page.baseRT);
-        Destroy(_page.flapRT);
-        _page.baseRT = null;
-        _page.flapRT = null;
+        Destroy(_frame.generated);
+        Destroy(_frame.latest);
+        Destroy(_frame.flip);
+        Destroy(_frame.oldest);
+        _frame.generated = null;
+        _frame.latest = null;
+        _frame.flip = null;
+        _frame.oldest = null;
 
         _sdPipeline?.Dispose();
         _sdPipeline = null;
     }
 
-    async Awaitable RunSDPipelineAsync(RenderTexture dest, CancellationToken cancel)
+    async Awaitable RunSDPipelineAsync()
     {
         _sdPipeline.Prompt = _prompt;
         _sdPipeline.Strength = _strength;
         _sdPipeline.StepCount = _stepCount;
         _sdPipeline.Seed = Random.Range(1, 2000000000);
         _sdPipeline.GuidanceScale = _guidance;
-        await _sdPipeline.RunAsync(_source.Texture, dest, cancel);
+        await _sdPipeline.RunAsync(_frame.latest, _frame.generated, destroyCancellationToken);
     }
 
     #endregion
@@ -108,44 +117,37 @@ public sealed class Shuffler : MonoBehaviour
 
     async Awaitable Start()
     {
-        var cancel = destroyCancellationToken;
-
         // Initialization
         await InitObjects();
 
-        while (true)
+        for (var genTask = (Awaitable)null;;)
         {
-            var genTask = RunSDPipelineAsync(_page.baseRT, cancel);
-            _queue.back.Enqueue(_page.baseRT);
+            // Push the previous "latest" frame to the queue.
+            _frame.queue.Enqueue(_frame.latest);
 
-            _page.baseRT = _page.flapRT;
-            _page.flapRT = _queue.flip.Dequeue();
-            (_page.progress, _page.speed) = (0, 0.5f);
+            // Reuse the previous "oldest" frame to store the latest frame.
+            _frame.latest = _frame.oldest;
+            Graphics.Blit(_source.Texture, _frame.latest);
 
-            (_queue.flip, _queue.back) = (_queue.back, _queue.flip);
+            // The previous "flip" frame becomes the "oldest" frame.
+            _frame.oldest = _frame.flip;
 
-            // Pause
-            await Awaitable.WaitForSecondsAsync(_pauseDuration);
+            // Get a frame from the queue and make it flipping.
+            _frame.flip = _frame.queue.Dequeue();
 
-            // Page flips
-            for (var i = 0; i < _flipCount; i++)
+            // Animation restart
+            _bgPage.time = 0;
+
+            // Generator task cycle
+            if (genTask?.IsCompleted ?? true)
             {
-                // Use the "stay" RT as a new back frame.
-                Graphics.Blit(_source.Texture, _page.baseRT);
-                _queue.back.Enqueue(_page.baseRT);
-
-                // New page pair
-                _page.baseRT = _page.flapRT;
-                _page.flapRT = _queue.flip.Dequeue();
-                (_page.progress, _page.speed) = (0, 1);
-
-                await Awaitable.WaitForSecondsAsync(_flipDuration);
+                genTask = RunSDPipelineAsync();
+                _fgPage.time = 0;
+                _camera.RenewTarget();
             }
 
-            // Complete the major frame generation.
-            await genTask;
-
-            _camera.RenewTarget();
+            // Per-flip wait
+            await Awaitable.WaitForSecondsAsync(_flipDuration);
         }
     }
 
@@ -153,16 +155,30 @@ public sealed class Shuffler : MonoBehaviour
 
     void Update()
     {
-        var dt = Time.deltaTime * _page.speed;
-        _page.progress = Mathf.Min(1, _page.progress + dt / _flipDuration);
+        // Animation time step
+        var delta = Time.deltaTime / _flipDuration;
+        _bgPage.time += delta;
+        _fgPage.time += delta;
 
-        _page.props.SetTexture("_Texture1", _page.flapRT);
-        _page.props.SetTexture("_Texture2", _page.baseRT);
-        _page.props.SetFloat("_Progress", _page.progress);
+        // Foreground page insertion
+        var fg = (tex1: _frame.flip, tex2: _frame.oldest, time: _bgPage.time);
+        if (_fgPage.time < _insertionCount)
+            (fg.tex1, fg.time) = (_frame.generated, _fgPage.time);
+        else if (_fgPage.time < _insertionCount + 1)
+            fg.tex2 = _frame.generated;
 
-        Graphics.RenderMesh
-          (new RenderParams(_pageMaterial){ matProps = _page.props },
-           _pageMesh, 0, Matrix4x4.identity);
+        // Rendering
+        _bgPage.props.SetTexture("_Texture1", _frame.flip);
+        _fgPage.props.SetTexture("_Texture1", fg.tex1);
+
+        _bgPage.props.SetTexture("_Texture2", _frame.oldest);
+        _fgPage.props.SetTexture("_Texture2", fg.tex2);
+
+        _bgPage.props.SetFloat("_Progress", Mathf.Clamp01(_bgPage.time));
+        _fgPage.props.SetFloat("_Progress", Mathf.Clamp01(fg.time));
+
+        Graphics.RenderMesh(_bgPage.rparams, _pageMesh, 0, _bgPage.matrix);
+        Graphics.RenderMesh(_fgPage.rparams, _pageMesh, 0, _fgPage.matrix);
     }
 
     #endregion
