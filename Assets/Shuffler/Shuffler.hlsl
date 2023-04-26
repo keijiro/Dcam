@@ -14,7 +14,7 @@ float3 SampleShuffler
 
 float PseudoOcclusion(float2 uv)
 {
-    return 4 * length(max(0, abs(uv - 0.5) - 0.25));
+    return 4 * length(max(0, abs(uv - 0.5) - 1.0 / 3 / 2 ));
 }
 
 void ShufflerFragment_float
