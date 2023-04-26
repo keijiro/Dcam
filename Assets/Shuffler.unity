@@ -541,12 +541,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _displayFps: 24
   _resourceDir: StableDiffusion
-  _flipTime: 0.175
+  _flipDuration: 0.175
   _queueLength: 8
-  _prompt: Surrealistic painting by J. C. Leyendecker
-  _strength: 0.5
-  _stepCount: 7
-  _guidance: 10
+  _insertionCount: 6
+  _prompt: Surrealistic painting by Rene Magritte
+  _strength: 0.4
+  _stepCount: 10
+  _guidance: 13
   _source: {fileID: 1294827506}
   _camera: {fileID: 350411052}
   _pageMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
