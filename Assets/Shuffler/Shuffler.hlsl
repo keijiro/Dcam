@@ -1,36 +1,41 @@
+// Pseudo ambient occlusion
+float ShufflerOcclusion(float2 uv, float size, float ext)
+{
+    float dist = length(max(0, abs(uv - 0.5) - size / 2));
+    return saturate(1 - dist / ext);
+}
+
+// Source color sampling function
 float3 SampleShuffler
-  (UnityTexture2D tex1, UnityTexture2D tex2, float2 uv, float prog)
+  (UnityTexture2D tex1, UnityTexture2D tex2, float2 uv, float t)
 {
-    float2 uv1 = uv;
-    float2 uv2 = uv;
-
-    uv1.y = uv1.y - 1 + smoothstep(-1, 1, prog) * 2 - 1;
-
-    float3 c1 = tex2D(tex1, uv1).rgb;
-    float3 c2 = tex2D(tex2, uv2).rgb;
-
-    return uv1.y > 0 ? c1 : c2;
+    float y1 = uv.y - pow(saturate(1 - t), 2.2);
+    float y2 = uv.y;
+    float3 c1 = tex2D(tex1, float2(uv.x, y1)).rgb;
+    float3 c2 = tex2D(tex2, float2(uv.x, y2)).rgb;
+    return y1 > 0 ? c1 : c2;
 }
 
-float PseudoOcclusion(float2 uv)
-{
-    return 4 * length(max(0, abs(uv - 0.5) - 1.0 / 3 / 2 ));
-}
-
+// Custom node function
 void ShufflerFragment_float
   (UnityTexture2D tex1, UnityTexture2D tex2,
-   float2 uv, float prog, float occlusion,
-   out float3 output)
+   float2 uv, float time, float blur,
+   float occ_size, float occ_ext, float occ_str,
+   out float3 output, out float alpha)
 {
     const uint SampleCount = 16;
 
-    float blur = 0.01f / 4;// * (1 - prog);
+    // Pseudo ambient occlusion
+    float occ = ShufflerOcclusion(uv, occ_size, occ_ext);
 
+    // Source color sampling with motion blur
     float3 acc = 0;
+    float t0 = time - blur / 2;
+    float dt = blur / SampleCount;
     for (uint i = 0; i < SampleCount; i++)
-        acc += SampleShuffler(tex1, tex2, uv, prog + blur * i);
+        acc += SampleShuffler(tex1, tex2, uv, t0 + dt * i);
 
-    float occ = lerp(1, PseudoOcclusion(uv), occlusion);
-
-    output = occ * acc / SampleCount;
+    // Composition
+    output = (1 - occ * occ_str) * acc / SampleCount;
+    alpha = 1 - length(max(abs(uv - 0.5) - 0.45, 0)) / 0.05;
 }

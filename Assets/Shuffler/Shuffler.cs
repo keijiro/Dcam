@@ -1,4 +1,4 @@
-#define ENABLE_MLSD
+//#define ENABLE_MLSD
 
 using UnityEngine;
 using System.Collections.Generic;
@@ -87,7 +87,7 @@ public sealed class Shuffler : MonoBehaviour
         _fgParams.rparams = new RenderParams(_pageMaterial){ matProps = _fgParams.props };
         _bgParams.matrix = MakeTSMatrix(0.01f, 3);
         _fgParams.matrix = Matrix4x4.identity;
-        _bgParams.props.SetFloat("_Occlusion", 1);
+        _bgParams.props.SetFloat("_OcclusionStrength", 0.85f);
 
         // Stable Diffusion pipeline
 #if ENABLE_MLSD
