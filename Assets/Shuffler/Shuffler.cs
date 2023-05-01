@@ -1,4 +1,4 @@
-//#define ENABLE_MLSD
+#define ENABLE_MLSD
 
 using UnityEngine;
 using System.Collections.Generic;
@@ -37,7 +37,13 @@ public sealed class Shuffler : MonoBehaviour
 
     #region Private objects
 
+    const int ImageWidth = 640;
+    const int ImageHeight = 384;
+
     string ResourcePath => Application.streamingAssetsPath + "/" + _resourceDir;
+
+    MLStableDiffusion.ResourceInfo ResourceInfo
+      => MLStableDiffusion.ResourceInfo.FixedSizeModel(ResourcePath, ImageWidth, ImageHeight);
 
     // Frame textures
     Queue<RenderTexture> _frameQueue;
@@ -61,24 +67,24 @@ public sealed class Shuffler : MonoBehaviour
     #region Private methods
 
     Matrix4x4 MakeTSMatrix(float z, float scale)
-      => Matrix4x4.TRS(Vector3.forward * z, Quaternion.identity, Vector3.one * scale);
+      => Matrix4x4.TRS(Vector3.forward * z,
+                       Quaternion.identity,
+                       new Vector3(1, (float)ImageHeight / ImageWidth, 1) * scale);
 
     async Awaitable InitObjects()
     {
-        var width = MLStableDiffusion.Pipeline.Width;
-
         // Application frame rate setting
         Application.targetFrameRate = _displayFps;
 
         // Frame queues
         _frameQueue = new Queue<RenderTexture>();
         for (var i = 0; i < _queueLength; i++)
-            _frameQueue.Enqueue(new RenderTexture(width, width, 0));
-        _latestFrame = new RenderTexture(width, width, 0);
-        _bgFrames.flip  = new RenderTexture(width, width, 0);
-        _bgFrames.sheet = new RenderTexture(width, width, 0);
-        _fgFrames.back  = new RenderTexture(width, width, 0);
-        _fgFrames.front = new RenderTexture(width, width, 0);
+            _frameQueue.Enqueue(new RenderTexture(ImageWidth, ImageHeight, 0));
+        _latestFrame = new RenderTexture(ImageWidth, ImageHeight, 0);
+        _bgFrames.flip  = new RenderTexture(ImageWidth, ImageHeight, 0);
+        _bgFrames.sheet = new RenderTexture(ImageWidth, ImageHeight, 0);
+        _fgFrames.back  = new RenderTexture(ImageWidth, ImageHeight, 0);
+        _fgFrames.front = new RenderTexture(ImageWidth, ImageHeight, 0);
 
         // Page rendering parameters
         _bgParams.props = new MaterialPropertyBlock();
@@ -86,14 +92,15 @@ public sealed class Shuffler : MonoBehaviour
         _bgParams.rparams = new RenderParams(_pageMaterial){ matProps = _bgParams.props };
         _fgParams.rparams = new RenderParams(_pageMaterial){ matProps = _fgParams.props };
         _bgParams.matrix = MakeTSMatrix(0.01f, 3);
-        _fgParams.matrix = Matrix4x4.identity;
+        _fgParams.matrix = MakeTSMatrix(0, 1);
         _bgParams.props.SetFloat("_OcclusionStrength", 0.85f);
+        _bgParams.props.SetFloat("_AspectRatio", (float)ImageWidth / ImageHeight);
 
         // Stable Diffusion pipeline
 #if ENABLE_MLSD
         _sdPipeline = new SDPipeline(_sdPreprocess);
         Debug.Log("Loading the Stable Diffusion mode...");
-        await _sdPipeline.InitializeAsync(ResourcePath, ComputeUnits.CpuAndGpu);
+        await _sdPipeline.InitializeAsync(ResourceInfo, ComputeUnits.CpuAndGpu);
         Debug.Log("Done.");
 #else
         await Awaitable.NextFrameAsync();

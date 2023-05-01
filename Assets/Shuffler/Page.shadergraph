@@ -23,6 +23,9 @@
         },
         {
             "m_Id": "cc97237f39f14b85ad0e395257384443"
+        },
+        {
+            "m_Id": "a55ce7b1e8844ea698eedd66c7abe13f"
         }
     ],
     "m_Keywords": [],
@@ -74,6 +77,9 @@
         },
         {
             "m_Id": "b9685023293a413d8ad91b7598f6d4a1"
+        },
+        {
+            "m_Id": "5bcf3e87392840e195f3d36db3a2fe2c"
         }
     ],
     "m_GroupDatas": [],
@@ -133,6 +139,20 @@
                     "m_Id": "1ec59d018c4740d788702a95329b5668"
                 },
                 "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "5bcf3e87392840e195f3d36db3a2fe2c"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "1ec59d018c4740d788702a95329b5668"
+                },
+                "m_SlotId": 10
             }
         },
         {
@@ -372,6 +392,9 @@
             "m_Id": "a52bc09f841749f7b1892f0bd63843ac"
         },
         {
+            "m_Id": "4c2106c76e4f4bf9bd2454c52fed89e1"
+        },
+        {
             "m_Id": "a0a4e98cf9794f0c9daba70d5f204fd9"
         },
         {
@@ -599,6 +622,21 @@
 }
 
 {
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "4c2106c76e4f4bf9bd2454c52fed89e1",
+    "m_Id": 10,
+    "m_DisplayName": "Aspect",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Aspect",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
     "m_SGVersion": 1,
     "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
     "m_ObjectId": "4c395a4f6f054c1c978dac525d74f02f",
@@ -671,6 +709,57 @@
     "m_ShaderOutputName": "Blur",
     "m_StageCapability": 3,
     "m_Value": 0.4000000059604645,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "5bcf3e87392840e195f3d36db3a2fe2c",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -555.0,
+            "y": 531.9999389648438,
+            "width": 138.00003051757813,
+            "height": 34.00006103515625
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "602541aab6c444989e6940da03d25c77"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "a55ce7b1e8844ea698eedd66c7abe13f"
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "602541aab6c444989e6940da03d25c77",
+    "m_Id": 0,
+    "m_DisplayName": "AspectRatio",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
 }
@@ -1006,6 +1095,34 @@
     "m_Value": 1.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "a55ce7b1e8844ea698eedd66c7abe13f",
+    "m_Guid": {
+        "m_GuidSerialized": "947c85e3-3e53-4356-b4b2-a0394118517a"
+    },
+    "m_Name": "AspectRatio",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "AspectRatio",
+    "m_DefaultReferenceName": "_AspectRatio",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 1.0,
+    "m_FloatType": 0,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    }
 }
 
 {
@@ -1532,6 +1649,9 @@
         },
         {
             "m_Id": "4c395a4f6f054c1c978dac525d74f02f"
+        },
+        {
+            "m_Id": "a55ce7b1e8844ea698eedd66c7abe13f"
         }
     ]
 }

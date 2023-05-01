@@ -1,7 +1,8 @@
 // Pseudo ambient occlusion
-float ShufflerOcclusion(float2 uv, float size, float ext)
+float ShufflerOcclusion(float2 uv, float size, float ext, float aspect)
 {
-    float dist = length(max(0, abs(uv - 0.5) - size / 2));
+    float2 coord = max(0, abs(uv - 0.5) - size / 2);
+    float dist = length(coord * float2(aspect, 1));
     return saturate(1 - dist / ext);
 }
 
@@ -20,13 +21,13 @@ float3 SampleShuffler
 void ShufflerFragment_float
   (UnityTexture2D tex1, UnityTexture2D tex2,
    float2 uv, float time, float blur,
-   float occ_size, float occ_ext, float occ_str,
+   float occ_size, float occ_ext, float occ_str, float aspect,
    out float3 output, out float alpha)
 {
     const uint SampleCount = 16;
 
     // Pseudo ambient occlusion
-    float occ = ShufflerOcclusion(uv, occ_size, occ_ext);
+    float occ = ShufflerOcclusion(uv, occ_size, occ_ext, aspect);
 
     // Source color sampling with motion blur
     float3 acc = 0;
