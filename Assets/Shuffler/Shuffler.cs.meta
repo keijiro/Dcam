@@ -5,9 +5,11 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - _source: {instanceID: 0}
+  - _camera: {instanceID: 0}
   - _pageMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
   - _pageMaterial: {fileID: -876546973899608171, guid: a2c759d370b5b4539807165785354adc, type: 3}
   - _sdPreprocess: {fileID: 7200000, guid: 7c06db8e339994c05bc2ad5e44c940de, type: 3}
+  - _prefilterShader: {fileID: 4800000, guid: 2994ffe4ca7a14b3badcd3efdf406303, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

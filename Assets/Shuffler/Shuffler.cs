@@ -32,6 +32,7 @@ public sealed class Shuffler : MonoBehaviour
     [SerializeField, HideInInspector] Mesh _pageMesh = null;
     [SerializeField, HideInInspector] Material _pageMaterial = null;
     [SerializeField, HideInInspector] ComputeShader _sdPreprocess = null;
+    [SerializeField, HideInInspector] Shader _prefilterShader = null;
 
     #endregion
 
@@ -44,6 +45,9 @@ public sealed class Shuffler : MonoBehaviour
 
     MLStableDiffusion.ResourceInfo ResourceInfo
       => MLStableDiffusion.ResourceInfo.FixedSizeModel(ResourcePath, ImageWidth, ImageHeight);
+
+    // Prefilter
+    (Material material, RenderTexture texture) _prefilter;
 
     // Frame textures
     Queue<RenderTexture> _frameQueue;
@@ -75,6 +79,10 @@ public sealed class Shuffler : MonoBehaviour
     {
         // Application frame rate setting
         Application.targetFrameRate = _displayFps;
+
+        // Prefilter
+        _prefilter.material = new Material(_prefilterShader);
+        _prefilter.texture = new RenderTexture(ImageWidth, ImageHeight, 0);
 
         // Frame queues
         _frameQueue = new Queue<RenderTexture>();
@@ -109,6 +117,10 @@ public sealed class Shuffler : MonoBehaviour
 
     void ReleaseObjects()
     {
+        Destroy(_prefilter.material);
+        Destroy(_prefilter.texture);
+        _prefilter = (null, null);
+
         while (_frameQueue.Count > 0) Destroy(_frameQueue.Dequeue());
 
         Destroy(_latestFrame);
@@ -156,12 +168,15 @@ public sealed class Shuffler : MonoBehaviour
 
         for (var genTask = (Awaitable)null;;)
         {
+            // Prefilter
+            Graphics.Blit(_source.Texture, _prefilter.texture, _prefilter.material, 5);
+
             // Push the previous "latest" frame to the queue.
             _frameQueue.Enqueue(_latestFrame);
 
             // Reuse the previous "sheet" frame to store the latest frame.
             _latestFrame = _bgFrames.sheet;
-            Graphics.Blit(_source.Texture, _latestFrame);
+            Graphics.Blit(_prefilter.texture, _latestFrame);
 
             // The previous "flip" frame becomes the "sheet" frame.
             _bgFrames.sheet = _bgFrames.flip;
