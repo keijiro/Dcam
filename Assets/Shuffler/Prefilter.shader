@@ -27,7 +27,21 @@ float3 SRGBToLinear(float3 c)
     return c * (c * (c * 0.305306011 + 0.682171111) + 0.012522878);
 }
 
-// Common vertex function
+// Common functions
+float3 SampleSource(float2 uv)
+{
+    return LinearToSRGB(tex2D(_MainTex, uv).rgb);
+}
+
+float4 ComposeFinal(float3 color, float2 uv)
+{
+    float4 ovr = tex2D(_OverlayTexture, uv);
+    ovr.rgb = LinearToSRGB(ovr);
+    color = lerp(color, ovr.rgb, ovr.a * _OverlayOpacity);
+    return float4(SRGBToLinear(color), 1);
+}
+
+// Vertex function
 void Vertex(float4 inPos : POSITION, float2 inUV : TEXCOORD0,
             out float4 outPos : SV_Position, out float2 outUV : TEXCOORD0)
 {
@@ -39,55 +53,50 @@ void Vertex(float4 inPos : POSITION, float2 inUV : TEXCOORD0,
 
 float4 FragmentBypass(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Target
 {
-    float4 c1 = tex2D(_MainTex, uv);
-    float4 c2 = tex2D(_OverlayTexture, uv);
-    return float4(lerp(c1.rgb, c2.rgb, c2.a * _OverlayOpacity), 1);
+    return ComposeFinal(SampleSource(uv), uv);
 }
 
 float4 FragmentMonochrome(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Target
 {
-    float3 col = tex2D(_MainTex, uv).rgb;
-    return float4((float3)Luminance(col), 1);
+    return ComposeFinal(Luminance(SampleSource(uv)), uv);
 }
 
 float4 FragmentInvert(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Target
 {
-    float3 col = tex2D(_MainTex, uv).rgb;
-    col = SRGBToLinear(1 - LinearToSRGB(col));
-    return float4(col, 1);
+    return ComposeFinal(1 - SampleSource(uv), uv);
 }
 
 float4 FragmentContours(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Target
 {
     float2 ddxy = float2(ddx(uv.x), ddy(uv.y));
     float4 delta = ddxy.xyxy * float4(1, 1, -1, 0);
-    float l0 = Luminance(LinearToSRGB(tex2D(_MainTex, uv - delta.xy).rgb));
-    float l1 = Luminance(LinearToSRGB(tex2D(_MainTex, uv - delta.wy).rgb));
-    float l2 = Luminance(LinearToSRGB(tex2D(_MainTex, uv - delta.zy).rgb));
-    float l3 = Luminance(LinearToSRGB(tex2D(_MainTex, uv - delta.xw).rgb));
-    float l4 = Luminance(LinearToSRGB(tex2D(_MainTex, uv           ).rgb));
-    float l5 = Luminance(LinearToSRGB(tex2D(_MainTex, uv + delta.xw).rgb));
-    float l6 = Luminance(LinearToSRGB(tex2D(_MainTex, uv + delta.zy).rgb));
-    float l7 = Luminance(LinearToSRGB(tex2D(_MainTex, uv + delta.wy).rgb));
-    float l8 = Luminance(LinearToSRGB(tex2D(_MainTex, uv + delta.xy).rgb));
+    float l0 = Luminance(SampleSource(uv - delta.xy));
+    float l1 = Luminance(SampleSource(uv - delta.wy));
+    float l2 = Luminance(SampleSource(uv - delta.zy));
+    float l3 = Luminance(SampleSource(uv - delta.xw));
+    float l4 = Luminance(SampleSource(uv           ));
+    float l5 = Luminance(SampleSource(uv + delta.xw));
+    float l6 = Luminance(SampleSource(uv + delta.zy));
+    float l7 = Luminance(SampleSource(uv + delta.wy));
+    float l8 = Luminance(SampleSource(uv + delta.xy));
     float gx = l2 - l0 + (l5 - l3) * 2 + l8 - l6;
     float gy = l6 - l0 + (l7 - l1) * 2 + l8 - l2;
     float g = 1 - smoothstep(0, 0.1, sqrt(gx * gx + gy * gy));
-    return float4(g, g, g, 1);
+    return ComposeFinal(g, uv);
 }
 
 float4 FragmentVerticalSplit(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Target
 {
     float2 uv1 = float2(uv.x + 0.25, uv.y);
     float2 uv2 = float2(uv.x - 0.25, 1 - uv.y);
-    return tex2D(_MainTex, uv.x < 0.5 ? uv1 : uv2);
+    return ComposeFinal(SampleSource(uv.x < 0.5 ? uv1 : uv2), uv);
 }
 
 float4 FragmentHorizontalSplit(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Target
 {
     float2 uv1 = float2(    uv.x, uv.y + 0.25);
     float2 uv2 = float2(1 - uv.x, uv.y - 0.25);
-    return tex2D(_MainTex, uv.y < 0.5 ? uv1 : uv2);
+    return ComposeFinal(SampleSource(uv.y < 0.5 ? uv1 : uv2), uv);
 }
 
     ENDCG
