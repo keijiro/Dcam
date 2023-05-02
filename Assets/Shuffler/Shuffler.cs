@@ -78,6 +78,9 @@ public sealed class Shuffler : MonoBehaviour
                        Quaternion.identity,
                        new Vector3(1, (float)ImageHeight / ImageWidth, 1) * scale);
 
+    Vector4 RandomVector
+      => new Vector4(Random.value, Random.value, Random.value, Random.value);
+
     async Awaitable InitObjects()
     {
         // Application frame rate setting
@@ -174,6 +177,7 @@ public sealed class Shuffler : MonoBehaviour
             // Prefilter
             _prefilter.material.SetTexture("_OverlayTexture", _overlayTexture);
             _prefilter.material.SetFloat("_OverlayOpacity", _overlayOpacity);
+            _prefilter.material.SetVector("_Random", RandomVector);
             Graphics.Blit(_source.Texture, _prefilter.texture, _prefilter.material, _prefilterNumber);
 
             // Push the previous "latest" frame to the queue.
