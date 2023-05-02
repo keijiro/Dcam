@@ -17,6 +17,8 @@ public sealed class Shuffler : MonoBehaviour
     [SerializeField] int _queueLength = 9;
     [SerializeField] int _insertionCount = 5;
     [SerializeField] int _prefilterNumber = 0;
+    [SerializeField] Texture2D _overlayTexture = null;
+    [SerializeField, Range(0, 1)] float _overlayOpacity = 0;
     [Space]
     [SerializeField] string _prompt = "Surrealistic painting by J. C. Leyendecker";
     [SerializeField] float _strength = 0.7f;
@@ -170,6 +172,8 @@ public sealed class Shuffler : MonoBehaviour
         for (var genTask = (Awaitable)null;;)
         {
             // Prefilter
+            _prefilter.material.SetTexture("_OverlayTexture", _overlayTexture);
+            _prefilter.material.SetFloat("_OverlayOpacity", _overlayOpacity);
             Graphics.Blit(_source.Texture, _prefilter.texture, _prefilter.material, _prefilterNumber);
 
             // Push the previous "latest" frame to the queue.

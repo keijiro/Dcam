@@ -3,6 +3,8 @@ Shader "Shuffler/Prefilter"
     Properties
     {
         _MainTex("", 2D) = "white" {}
+        _OverlayTexture("", 2D) = "black" {}
+        _OverlayOpacity("", Float) = 1
     }
 
 CGINCLUDE
@@ -10,6 +12,8 @@ CGINCLUDE
 #include "UnityCG.cginc"
 
 sampler2D _MainTex;
+sampler2D _OverlayTexture;
+float _OverlayOpacity;
 
 // Color space conversion between sRGB and linear space.
 // http://chilliant.blogspot.com/2012/08/srgb-approximations-for-hlsl.html
@@ -35,7 +39,9 @@ void Vertex(float4 inPos : POSITION, float2 inUV : TEXCOORD0,
 
 float4 FragmentBypass(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Target
 {
-    return tex2D(_MainTex, uv);
+    float4 c1 = tex2D(_MainTex, uv);
+    float4 c2 = tex2D(_OverlayTexture, uv);
+    return float4(lerp(c1.rgb, c2.rgb, c2.a * _OverlayOpacity), 1);
 }
 
 float4 FragmentMonochrome(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Target
