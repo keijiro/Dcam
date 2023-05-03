@@ -10,6 +10,7 @@ Shader "Shuffler/Prefilter"
 CGINCLUDE
 
 #include "UnityCG.cginc"
+#include "Packages/jp.keijiro.noiseshader/Shader/SimplexNoise2D.hlsl"
 
 sampler2D _MainTex;
 sampler2D _OverlayTexture;
@@ -114,6 +115,22 @@ float4 FragmentSlice(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Targe
     return ComposeFinal(SampleSource(uv_d), uv);
 }
 
+float4 FragmentFlow(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Target
+{
+    float freq = lerp(2, 10, _Random.x);
+    float disp = lerp(0.0001, 0.004, _Random.y);
+    float2 p = uv;
+    float3 acc = 0;
+    for (uint i = 0; i < 8; i++)
+    {
+        float2 np = p * freq + float2(0, _Time.y);
+        float2 flow = cross(SimplexNoiseGrad(np), float3(0, 0, 1)).xy;
+        p += flow * disp;
+        acc += SampleSource(p);
+    }
+    return ComposeFinal(acc / 8, uv);
+}
+
     ENDCG
 
     SubShader
@@ -159,6 +176,13 @@ float4 FragmentSlice(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Targe
             CGPROGRAM
             #pragma vertex Vertex
             #pragma fragment FragmentSlice
+            ENDCG
+        }
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex Vertex
+            #pragma fragment FragmentFlow
             ENDCG
         }
     }
