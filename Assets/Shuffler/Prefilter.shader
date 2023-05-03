@@ -118,7 +118,7 @@ float4 FragmentSlice(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Targe
 float4 FragmentFlow(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Target
 {
     float freq = lerp(2, 10, _Random.x);
-    float disp = lerp(0.0001, 0.004, _Random.y);
+    float disp = lerp(0.0001, 0.003, _Random.y);
     float2 p = uv;
     float3 acc = 0;
     for (uint i = 0; i < 8; i++)
