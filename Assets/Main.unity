@@ -546,9 +546,9 @@ MonoBehaviour:
   _insertionCount: 6
   _prefilterNumber: 0
   _titleTexture: {fileID: 2800000, guid: 5a25b6e176fc44274b27c7d5d6417586, type: 3}
-  _titleColor: {r: 1, g: 1, b: 1, a: 0}
+  _titleColor: {r: 1, g: 1, b: 1, a: 1}
   _overlayTexture: {fileID: 2800000, guid: 1d6072991e8994250a6bdcacfcbf3be8, type: 3}
-  _overlayColor: {r: 1, g: 0, b: 0, a: 0.5019608}
+  _overlayColor: {r: 1, g: 0, b: 0, a: 1}
   _prompt: highly detailed surrealistic painting by J. C. Leyendecker
   _strength: 0.45
   _stepCount: 10

@@ -3,10 +3,10 @@ Shader "Shuffler/Prefilter"
     Properties
     {
         _MainTex("", 2D) = "gray" {}
-        _TitleTexture("", 2D) = "black" {}
-        _TitleColor("", Color) = (1, 1, 1, 1)
-        _OverlayTexture("", 2D) = "black" {}
-        _OverlayColor("", Color) = (1, 1, 1, 1)
+        _Layer1Texture("", 2D) = "black" {}
+        _Layer2Texture("", 2D) = "black" {}
+        _Layer1Color("", Color) = (1, 1, 1, 1)
+        _Layer2Color("", Color) = (1, 1, 1, 1)
     }
 
 CGINCLUDE
@@ -17,30 +17,15 @@ CGINCLUDE
 // -- Uniforms
 
 sampler2D _MainTex;
-
-sampler2D _TitleTexture;
-float4 _TitleColor;
-
-sampler2D _OverlayTexture;
-float4 _OverlayColor;
-
+sampler2D _Layer1Texture;
+sampler2D _Layer2Texture;
+float4x4 _Layer1Matrix;
+float4x4 _Layer2Matrix;
+float4 _Layer1Color;
+float4 _Layer2Color;
 float4 _Random;
 
 // -- Common functions
-
-// Random 2D transformation
-float2 ApplyRandomTransform(float2 p)
-{
-    const float4 rnd = frac(_Random * 3274.3264);
-    const float move = (rnd.xy - 0.5) * float2(0.5, 0.2);
-    const float phi = (rnd.z - 0.5) * UNITY_PI;
-    const float scale = lerp(0.4, 2, rnd.w);
-    const float2 rot = float2(sin(phi), cos(phi));
-    const float2x2 m_rs = float2x2(rot.x, rot.y, -rot.y, rot.x) * scale;
-    p = (p - 0.5) * float2(1, 0.5);
-    p = mul(m_rs, p) + move;
-    return p * float2(1, 2) + 0.5;
-}
 
 // Color space conversion between sRGB and linear space.
 // http://chilliant.blogspot.com/2012/08/srgb-approximations-for-hlsl.html
@@ -73,11 +58,12 @@ float3 SampleSource(float2 uv)
 // Output: Final composition with title/overlay
 float4 ComposeFinal(float3 color, float2 uv)
 {
-    const float2 uv2 = ApplyRandomTransform(uv);
-    const float4 ov1 = LinearToSRGB(tex2D(_TitleTexture, uv) * _TitleColor);
-    const float4 ov2 = LinearToSRGB(tex2D(_OverlayTexture, uv2) * _OverlayColor);
-    color = lerp(color, ov1.rgb, ov1.a);
-    color = lerp(color, ov2.rgb, ov2.a);
+    const float2 uv1 = mul(_Layer1Matrix, float4(uv, 0, 1)).xy;
+    const float2 uv2 = mul(_Layer2Matrix, float4(uv, 0, 1)).xy;
+    const float4 c1 = tex2D(_Layer1Texture, uv1) * _Layer1Color;
+    const float4 c2 = tex2D(_Layer2Texture, uv2) * _Layer2Color;
+    color = lerp(color, LinearToSRGB(c1.rgb), c1.a);
+    color = lerp(color, LinearToSRGB(c2.rgb), c2.a);
     return float4(SRGBToLinear(color), 1);
 }
 
@@ -105,27 +91,7 @@ float4 FragmentPosterize(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_T
     return ComposeFinal(color, uv);
 }
 
-// Pass 2: Contours (Sobel filter)
-float4 FragmentContours(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Target
-{
-    const float2 ddxy = float2(ddx(uv.x), ddy(uv.y));
-    const float4 delta = ddxy.xyxy * float4(1, 1, -1, 0);
-    const float l0 = Luma(SampleSource(uv - delta.xy));
-    const float l1 = Luma(SampleSource(uv - delta.wy));
-    const float l2 = Luma(SampleSource(uv - delta.zy));
-    const float l3 = Luma(SampleSource(uv - delta.xw));
-    const float l4 = Luma(SampleSource(uv           ));
-    const float l5 = Luma(SampleSource(uv + delta.xw));
-    const float l6 = Luma(SampleSource(uv + delta.zy));
-    const float l7 = Luma(SampleSource(uv + delta.wy));
-    const float l8 = Luma(SampleSource(uv + delta.xy));
-    const float gx = l2 - l0 + (l5 - l3) * 2 + l8 - l6;
-    const float gy = l6 - l0 + (l7 - l1) * 2 + l8 - l2;
-    const float g = 1 - smoothstep(0, 0.2, sqrt(gx * gx + gy * gy));
-    return ComposeFinal(g, uv);
-}
-
-// Pass 3: Vertical split and mirroring
+// Pass 2: Vertical split and mirroring
 float4 FragmentVerticalSplit(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Target
 {
     const float2 uv1 = float2(uv.x + 0.25, uv.y);
@@ -133,7 +99,7 @@ float4 FragmentVerticalSplit(float4 pos : SV_Position, float2 uv : TEXCOORD0) : 
     return ComposeFinal(SampleSource(uv.x < 0.5 ? uv1 : uv2), uv);
 }
 
-// Pass 4: Horizontal split and mirroring
+// Pass 3: Horizontal split and mirroring
 float4 FragmentHorizontalSplit(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Target
 {
     const float2 uv1 = float2(    uv.x, uv.y + 0.25);
@@ -141,7 +107,7 @@ float4 FragmentHorizontalSplit(float4 pos : SV_Position, float2 uv : TEXCOORD0) 
     return ComposeFinal(SampleSource(uv.y < 0.5 ? uv1 : uv2), uv);
 }
 
-// Pass 5: Random slicing
+// Pass 4: Random slicing
 float4 FragmentSlice(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Target
 {
     // Random slice angle
@@ -159,7 +125,7 @@ float4 FragmentSlice(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Targe
     return ComposeFinal(SampleSource(uv + disp), uv);
 }
 
-// Pass 6: Random flow
+// Pass 5: Random flow
 float4 FragmentFlow(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Target
 {
     // Constant (sample count)
@@ -203,13 +169,6 @@ float4 FragmentFlow(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Target
             CGPROGRAM
             #pragma vertex Vertex
             #pragma fragment FragmentPosterize
-            ENDCG
-        }
-        Pass
-        {
-            CGPROGRAM
-            #pragma vertex Vertex
-            #pragma fragment FragmentContours
             ENDCG
         }
         Pass
