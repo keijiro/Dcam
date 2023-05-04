@@ -1,12 +1,10 @@
-//#define ENABLE_MLSD
+#define ENABLE_MLSD
 
 using UnityEngine;
-using Unity.Mathematics;
 using System.Collections.Generic;
 using ImageSource = Klak.TestTools.ImageSource;
 using ComputeUnits = MLStableDiffusion.ComputeUnits;
 using SDPipeline = MLStableDiffusion.Pipeline;
-using Random = Unity.Mathematics.Random;
 
 public sealed class Shuffler : MonoBehaviour
 {
@@ -54,7 +52,7 @@ public sealed class Shuffler : MonoBehaviour
       => MLStableDiffusion.ResourceInfo.FixedSizeModel(ResourcePath, ImageWidth, ImageHeight);
 
     // Prefilter
-    (Material material, RenderTexture texture) _prefilter;
+    Prefilter _prefilter;
 
     // Frame textures
     Queue<RenderTexture> _frameQueue;
@@ -69,7 +67,6 @@ public sealed class Shuffler : MonoBehaviour
     // Animation parameters
     float _flipTime;
     int _flipCount;
-    Random _random = new Random(123);
 
     // Stable Diffusion pipeline
     SDPipeline _sdPipeline;
@@ -78,50 +75,10 @@ public sealed class Shuffler : MonoBehaviour
 
     #region Private methods
 
-    float4x4 MakePageTransform(float z, float scale)
-      => math.mul(float4x4.Translate(math.float3(0, 0, z)),
-                  float4x4.Scale(1, (float)ImageHeight / ImageWidth, 1) * scale);
-
-    (float4x4, float4x4) CalculatePrefilterMatrices()
-    {
-        // Random TRS for the overlay layer
-        var mtxRnd = float4x4.TRS
-          (math.float3(_random.NextFloat2() - 0.5f, 0),
-           quaternion.RotateZ(_random.NextFloat(-0.5f, 0.5f) * math.PI),
-           _random.NextFloat(0.5f, 2));
-
-        // UV (0 .. 1) -> (-0.5 .. +0.5)
-        var mtxCenter = float4x4.Translate(math.float3(-0.5f, -0.5f, 0));
-
-        // UV aspect ratio fix
-        var mtxUVSS = float4x4.Scale(1, (float)ImageHeight / ImageWidth, 1);
-
-        // Inverse aspect ratio fix for the each layer
-        var mtxUV1 = float4x4.Scale(1, (float)_titleTexture.width / _titleTexture.height, 1);
-        var mtxUV2 = float4x4.Scale(1, (float)_overlayTexture.width / _overlayTexture.height, 1);
-
-        // (-0.5 .. +0.5) -> (0 .. 1)
-        var mtxOffs = float4x4.Translate(math.float3(0.5f, 0.5f, 0));
-
-        // UV transform matrices for the each layer
-        var mtxBase = math.mul(mtxUVSS, mtxCenter);
-
-        return (math.mul(math.mul(mtxOffs, mtxUV1), mtxBase),
-                math.mul(math.mul(mtxOffs, mtxUV2), math.mul(mtxRnd, mtxBase)));
-    }
-
-    void UpdatePrefilterProperties()
-    {
-        var mtx = CalculatePrefilterMatrices();
-        var mat = _prefilter.material;
-        mat.SetTexture("_Layer1Texture", _titleTexture);
-        mat.SetTexture("_Layer2Texture", _overlayTexture);
-        mat.SetColor("_Layer1Color", _titleColor);
-        mat.SetColor("_Layer2Color", _overlayColor);
-        mat.SetMatrix("_Layer1Matrix", mtx.Item1);
-        mat.SetMatrix("_Layer2Matrix", mtx.Item2);
-        mat.SetVector("_Random", _random.NextFloat4());
-    }
+    Matrix4x4 MakePageTransform(float z, float scale)
+      => Matrix4x4.TRS
+           (Vector3.forward * z, Quaternion.identity,
+            new Vector3(1, (float)ImageHeight / ImageWidth, 1) * scale);
 
     async Awaitable InitObjects()
     {
@@ -129,8 +86,8 @@ public sealed class Shuffler : MonoBehaviour
         Application.targetFrameRate = _displayFps;
 
         // Prefilter
-        _prefilter.material = new Material(_prefilterShader);
-        _prefilter.texture = new RenderTexture(ImageWidth, ImageHeight, 0);
+        _prefilter = new Prefilter(ImageWidth, ImageHeight, _prefilterShader)
+          { Layer1Texture = _titleTexture, Layer2Texture = _overlayTexture };
 
         // Frame queues
         _frameQueue = new Queue<RenderTexture>();
@@ -165,9 +122,8 @@ public sealed class Shuffler : MonoBehaviour
 
     void ReleaseObjects()
     {
-        Destroy(_prefilter.material);
-        Destroy(_prefilter.texture);
-        _prefilter = (null, null);
+        _prefilter.Destroy();
+        _prefilter = null;
 
         while (_frameQueue.Count > 0) Destroy(_frameQueue.Dequeue());
 
@@ -193,7 +149,7 @@ public sealed class Shuffler : MonoBehaviour
             _sdPipeline.Prompt = _prompt;
             _sdPipeline.Strength = _strength;
             _sdPipeline.StepCount = _stepCount;
-            _sdPipeline.Seed = _random.NextInt(1, 2000000000);
+            _sdPipeline.Seed = Random.Range(1, 2000000000);
             _sdPipeline.GuidanceScale = _guidance;
             await _sdPipeline.RunAsync
               (_latestFrame, _fgFrames.back, destroyCancellationToken);
@@ -201,7 +157,7 @@ public sealed class Shuffler : MonoBehaviour
         else
         {
             Graphics.Blit(_latestFrame, _fgFrames.back);
-            await Awaitable.WaitForSecondsAsync(_random.NextFloat(0.5f, 2.0f));
+            await Awaitable.WaitForSecondsAsync(Random.Range(0.5f, 2.0f));
         }
     }
 
@@ -217,15 +173,16 @@ public sealed class Shuffler : MonoBehaviour
         for (var genTask = (Awaitable)null;;)
         {
             // Prefilter
-            UpdatePrefilterProperties();
-            Graphics.Blit(_source.Texture, _prefilter.texture, _prefilter.material, _prefilterNumber);
+            _prefilter.Layer1Color = _titleColor;
+            _prefilter.Layer2Color = _overlayColor;
+            _prefilter.Apply(_source.Texture, _prefilterNumber);
 
             // Push the previous "latest" frame to the queue.
             _frameQueue.Enqueue(_latestFrame);
 
             // Reuse the previous "sheet" frame to store the latest frame.
             _latestFrame = _bgFrames.sheet;
-            Graphics.Blit(_prefilter.texture, _latestFrame);
+            Graphics.Blit(_prefilter.Output, _latestFrame);
 
             // The previous "flip" frame becomes the "sheet" frame.
             _bgFrames.sheet = _bgFrames.flip;
