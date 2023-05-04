@@ -3,8 +3,10 @@ Shader "Shuffler/Prefilter"
     Properties
     {
         _MainTex("", 2D) = "gray" {}
+        _TitleTexture("", 2D) = "black" {}
+        _TitleColor("", Color) = (1, 1, 1, 1)
         _OverlayTexture("", 2D) = "black" {}
-        _OverlayOpacity("", Float) = 1
+        _OverlayColor("", Color) = (1, 1, 1, 1)
     }
 
 CGINCLUDE
@@ -15,11 +17,30 @@ CGINCLUDE
 // -- Uniforms
 
 sampler2D _MainTex;
+
+sampler2D _TitleTexture;
+float4 _TitleColor;
+
 sampler2D _OverlayTexture;
-float _OverlayOpacity;
+float4 _OverlayColor;
+
 float4 _Random;
 
 // -- Common functions
+
+// Random 2D transformation
+float2 ApplyRandomTransform(float2 p)
+{
+    const float4 rnd = frac(_Random * 3274.3264);
+    const float move = (rnd.xy - 0.5) * float2(0.5, 0.2);
+    const float phi = (rnd.z - 0.5) * UNITY_PI;
+    const float scale = lerp(0.4, 2, rnd.w);
+    const float2 rot = float2(sin(phi), cos(phi));
+    const float2x2 m_rs = float2x2(rot.x, rot.y, -rot.y, rot.x) * scale;
+    p = (p - 0.5) * float2(1, 0.5);
+    p = mul(m_rs, p) + move;
+    return p * float2(1, 2) + 0.5;
+}
 
 // Color space conversion between sRGB and linear space.
 // http://chilliant.blogspot.com/2012/08/srgb-approximations-for-hlsl.html
@@ -28,10 +49,14 @@ float3 LinearToSRGB(float3 c)
     return max(1.055 * pow(saturate(c), 0.416666667) - 0.055, 0.0);
 }
 
+float4 LinearToSRGB(float4 c) { return float4(LinearToSRGB(c.rgb), c.a); }
+
 float3 SRGBToLinear(float3 c)
 {
     return c * (c * (c * 0.305306011 + 0.682171111) + 0.012522878);
 }
+
+float4 SRGBToLinear(float4 c) { return float4(SRGBToLinear(c.rgb), c.a); }
 
 // Rec.709 luma
 float Luma(float3 c)
@@ -45,12 +70,14 @@ float3 SampleSource(float2 uv)
     return LinearToSRGB(tex2D(_MainTex, uv).rgb);
 }
 
-// Output: Final composition with overlays
+// Output: Final composition with title/overlay
 float4 ComposeFinal(float3 color, float2 uv)
 {
-    float4 ovr = tex2D(_OverlayTexture, uv);
-    ovr.rgb = LinearToSRGB(ovr);
-    color = lerp(color, ovr.rgb, ovr.a * _OverlayOpacity);
+    const float2 uv2 = ApplyRandomTransform(uv);
+    const float4 ov1 = LinearToSRGB(tex2D(_TitleTexture, uv) * _TitleColor);
+    const float4 ov2 = LinearToSRGB(tex2D(_OverlayTexture, uv2) * _OverlayColor);
+    color = lerp(color, ov1.rgb, ov1.a);
+    color = lerp(color, ov2.rgb, ov2.a);
     return float4(SRGBToLinear(color), 1);
 }
 
