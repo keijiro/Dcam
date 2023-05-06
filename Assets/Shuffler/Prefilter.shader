@@ -17,6 +17,7 @@ CGINCLUDE
 // -- Uniforms
 
 sampler2D _MainTex;
+float4 _MainTex_TexelSize;
 sampler2D _Layer1Texture;
 sampler2D _Layer2Texture;
 float4x4 _Layer1Matrix;
@@ -110,17 +111,19 @@ float4 FragmentHorizontalSplit(float4 pos : SV_Position, float2 uv : TEXCOORD0) 
 // Pass 4: Random slicing
 float4 FragmentSlice(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Target
 {
+    // Aspect ratio compensation
+    const float2 aspfix = float2(_MainTex_TexelSize.x * _MainTex_TexelSize.w, 1);
     // Random slice angle
     const float phi = _Random.x * UNITY_PI * 2;
     // Base axis (1) and displacement axis (2)
     const float2 axis1 = float2(cos(phi), sin(phi));
     const float2 axis2 = axis1.yx * float2(-1, 1);
     // Random slice width
-    const float width = lerp(5, 20, _Random.y);
+    const float width = 10;//lerp(5, 20, _Random.y);
     // Direction (+/-)
-    const float dir = frac(dot(uv, axis1) * width) < 0.5 ? -1 : 1;
+    const float dir = frac(dot(uv * aspfix.yx, axis1) * width) < 0.5 ? -1 : 1;
     // Displacement vector
-    const float2 disp = axis2 * dir * _Random.z * 0.05;
+    const float2 disp = axis2 * dir * aspfix * _Random.z * 0.05;
     // Composition
     return ComposeFinal(SampleSource(uv + disp), uv);
 }
@@ -128,6 +131,8 @@ float4 FragmentSlice(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Targe
 // Pass 5: Random flow
 float4 FragmentFlow(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Target
 {
+    // Aspect ratio compensation
+    const float2 aspfix = float2(_MainTex_TexelSize.x * _MainTex_TexelSize.w, 1);
     // Constant (sample count)
     const uint sample_count = 8;
     // Noise frequency
@@ -140,11 +145,11 @@ float4 FragmentFlow(float4 pos : SV_Position, float2 uv : TEXCOORD0) : SV_Target
     for (uint i = 1; i < sample_count; i++)
     {
         // Noise field sampling point
-        float2 np = p * freq + float2(0, _Time.y);
+        float2 np = p * aspfix.yx * freq + float2(0, _Time.y);
         // 2D divergence-free noise field
         float2 dfn = cross(SimplexNoiseGrad(np), float3(0, 0, 1)).xy;
         // Step
-        p += dfn * slen;
+        p += dfn * aspfix * slen;
         // Sampling and accumulation
         acc += SampleSource(p);
     }
