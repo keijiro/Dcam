@@ -4,6 +4,8 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - _titleTexture: {fileID: 2800000, guid: 5a25b6e176fc44274b27c7d5d6417586, type: 3}
+  - _overlayTexture: {fileID: 2800000, guid: 1d6072991e8994250a6bdcacfcbf3be8, type: 3}
   - _source: {instanceID: 0}
   - _camera: {instanceID: 0}
   - _pageMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
