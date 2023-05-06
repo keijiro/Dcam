@@ -18,6 +18,9 @@ public sealed class Configurator : MonoBehaviour
     public void SetPrefilter(int index)
       => _target.Prefilter = index;
 
+    public void InsertionLength(float param)
+      => _target.InsertionCount = (int)(param * 5 + 1);
+
     public void SetStrengthAndStepCount(float param)
     {
         _target.Strength = 0.3f + param * 0.4f;
