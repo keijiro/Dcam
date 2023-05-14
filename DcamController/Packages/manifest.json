@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "jp.keijiro.klak.ndi": "2.1.0",
     "jp.keijiro.klak.vjui": "1.0.3"
   },
   "scopedRegistries": [
