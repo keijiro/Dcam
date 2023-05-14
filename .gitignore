@@ -3,10 +3,10 @@ Desktop.ini
 .DS_Store
 *.swp
 
-/Library
-/Logs
-/Recordings
-/Temp
-/UserSettings
+/Dcam*/Library
+/Dcam*/Logs
+/Dcam*/Recordings
+/Dcam*/Temp
+/Dcam*/UserSettings
 
-/Assets/StreamingAssets/StableDiffusion
+/DcamVisualizer/Assets/StreamingAssets/StableDiffusion
