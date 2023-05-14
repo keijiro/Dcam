@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "jp.keijiro.klak.ndi": "2.1.0",
+    "jp.keijiro.klak.vjui": "1.0.3"
+  },
+  "scopedRegistries": [
+    {
+      "name": "Keijiro",
+      "url": "https://registry.npmjs.com",
+      "scopes": [
+        "jp.keijiro"
+      ]
+    }
+  ]
+}
