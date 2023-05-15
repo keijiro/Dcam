@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "jp.keijiro.dcam.metadata": "file:../../DcamMetadata",
     "jp.keijiro.klak.ndi": "2.1.0",
     "jp.keijiro.klak.vjui": "1.0.3",
     "com.unity.modules.audio": "1.0.0"

@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 5781191}
   - component: {fileID: 5781190}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button 13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,10 +203,34 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5781191}
   _onButtonDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button13
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _onButtonUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button13
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5781191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,7 +360,7 @@ GameObject:
   - component: {fileID: 76760410}
   - component: {fileID: 76760411}
   m_Layer: 5
-  m_Name: Insert
+  m_Name: Knob 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -411,7 +435,19 @@ MonoBehaviour:
   _graphic: {fileID: 2115720063}
   _onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Knob0
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &77509555
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +461,7 @@ GameObject:
   - component: {fileID: 77509558}
   - component: {fileID: 77509557}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -495,10 +531,34 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 77509558}
   _onButtonDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button0
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _onButtonUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button0
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &77509558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,7 +690,7 @@ GameObject:
   - component: {fileID: 143127508}
   - component: {fileID: 143127507}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -700,10 +760,34 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 143127508}
   _onButtonDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button6
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _onButtonUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button6
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &143127508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -755,7 +839,7 @@ GameObject:
   - component: {fileID: 154587447}
   - component: {fileID: 154587446}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -825,10 +909,34 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 154587447}
   _onButtonDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button8
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _onButtonUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button8
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &154587447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -867,6 +975,83 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 154587444}
   m_CullTransparentMesh: 1
+--- !u!1 &220649610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 220649612}
+  - component: {fileID: 220649614}
+  - component: {fileID: 220649611}
+  - component: {fileID: 220649613}
+  m_Layer: 0
+  m_Name: Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &220649611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220649610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5c0fdfedc20e4ba4809b4961f2a3b23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &220649612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220649610}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &220649613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220649610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3e567785a9fd4959bb9892b6cda148e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buffer: {fileID: 8400000, guid: 92ce0328f74b3423798d76e14a1b8648, type: 2}
+--- !u!114 &220649614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220649610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2d98e5bfcdff4847ad69efa861a8e7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ndiName: Camera
+  _keepAlpha: 0
+  _captureMethod: 2
+  _sourceCamera: {fileID: 0}
+  _sourceTexture: {fileID: 8400000, guid: 92ce0328f74b3423798d76e14a1b8648, type: 2}
+  _resources: {fileID: 11400000, guid: 69304b86950074db7ba8caba75214004, type: 2}
 --- !u!1 &262901806
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,7 +1145,7 @@ GameObject:
   - component: {fileID: 311290891}
   - component: {fileID: 311290890}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1030,10 +1215,34 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 311290891}
   _onButtonDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button4
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _onButtonUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button4
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &311290891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1163,7 +1372,7 @@ GameObject:
   - component: {fileID: 363201600}
   - component: {fileID: 363201601}
   m_Layer: 5
-  m_Name: Strength
+  m_Name: Knob 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1238,7 +1447,19 @@ MonoBehaviour:
   _graphic: {fileID: 707402526}
   _onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Knob1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &371246529
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,7 +1553,7 @@ GameObject:
   - component: {fileID: 375033406}
   - component: {fileID: 375033405}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1402,10 +1623,34 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 375033406}
   _onButtonDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button11
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _onButtonUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button11
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &375033406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1457,7 +1702,7 @@ GameObject:
   - component: {fileID: 498523152}
   - component: {fileID: 498523151}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button 12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1527,10 +1772,34 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 498523152}
   _onButtonDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button12
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _onButtonUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button12
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &498523152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1582,7 +1851,7 @@ GameObject:
   - component: {fileID: 532903709}
   - component: {fileID: 532903708}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1652,10 +1921,34 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 532903709}
   _onButtonDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button3
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _onButtonUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button3
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &532903709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1945,7 +2238,7 @@ GameObject:
   - component: {fileID: 587686434}
   - component: {fileID: 587686435}
   m_Layer: 5
-  m_Name: Overlay
+  m_Name: Knob 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2020,7 +2313,19 @@ MonoBehaviour:
   _graphic: {fileID: 1936163972}
   _onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Knob3
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &631478806
 GameObject:
   m_ObjectHideFlags: 0
@@ -2350,7 +2655,7 @@ GameObject:
   - component: {fileID: 847575130}
   - component: {fileID: 847575129}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2420,10 +2725,34 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 847575130}
   _onButtonDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button7
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _onButtonUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button7
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &847575130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2558,7 +2887,7 @@ GameObject:
   - component: {fileID: 901599152}
   - component: {fileID: 901599151}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2628,10 +2957,34 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 901599152}
   _onButtonDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button5
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _onButtonUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button5
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &901599152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2749,7 +3102,7 @@ GameObject:
   - component: {fileID: 984975599}
   - component: {fileID: 984975600}
   m_Layer: 5
-  m_Name: Title
+  m_Name: Knob 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2824,7 +3177,19 @@ MonoBehaviour:
   _graphic: {fileID: 1975079249}
   _onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Knob2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1076440065
 GameObject:
   m_ObjectHideFlags: 0
@@ -3008,7 +3373,7 @@ GameObject:
   - component: {fileID: 1304620217}
   - component: {fileID: 1304620216}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3078,10 +3443,34 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1304620217}
   _onButtonDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button9
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _onButtonUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button9
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1304620217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3420,7 +3809,7 @@ GameObject:
   - component: {fileID: 1528395966}
   - component: {fileID: 1528395965}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3490,10 +3879,34 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1528395966}
   _onButtonDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button2
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _onButtonUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button2
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1528395966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3630,6 +4043,7 @@ RectTransform:
   - {fileID: 1446079889}
   - {fileID: 1515129565}
   - {fileID: 1509822355}
+  - {fileID: 1936952947}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4047,7 +4461,7 @@ GameObject:
   - component: {fileID: 1933762440}
   - component: {fileID: 1933762439}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4117,10 +4531,34 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1933762440}
   _onButtonDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button10
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _onButtonUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button10
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1933762440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4235,7 +4673,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936163970}
   m_CullTransparentMesh: 1
---- !u!1 &1953867353
+--- !u!1 &1936952946
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4243,62 +4681,92 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1953867355}
-  - component: {fileID: 1953867356}
-  - component: {fileID: 1953867354}
-  m_Layer: 0
-  m_Name: Camera Input
+  - component: {fileID: 1936952947}
+  - component: {fileID: 1936952950}
+  - component: {fileID: 1936952949}
+  - component: {fileID: 1936952948}
+  m_Layer: 5
+  m_Name: Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1953867354
-MonoBehaviour:
+--- !u!224 &1936952947
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953867353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2d98e5bfcdff4847ad69efa861a8e7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ndiName: Camera
-  _keepAlpha: 0
-  _captureMethod: 2
-  _sourceCamera: {fileID: 0}
-  _sourceTexture: {fileID: 8400000, guid: 92ce0328f74b3423798d76e14a1b8648, type: 2}
-  _resources: {fileID: 11400000, guid: 69304b86950074db7ba8caba75214004, type: 2}
---- !u!4 &1953867355
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953867353}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 1936952946}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1560921312}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1953867356
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -50, y: 30}
+  m_SizeDelta: {x: 120, y: 26}
+  m_Pivot: {x: 1, y: 0}
+--- !u!114 &1936952948
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953867353}
+  m_GameObject: {fileID: 1936952946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3e567785a9fd4959bb9892b6cda148e, type: 3}
+  m_Script: {fileID: 11500000, guid: b63f236353c1148b0a346c1e922f1369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 8400000, guid: 92ce0328f74b3423798d76e14a1b8648, type: 2}
+  _timeText: {fileID: 1936952949}
+--- !u!114 &1936952949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936952946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 33698d0f40a161548bafdd974b0dddf8, type: 3}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 5
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 12:34:56
+--- !u!222 &1936952950
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936952946}
+  m_CullTransparentMesh: 1
 --- !u!1 &1975079247
 GameObject:
   m_ObjectHideFlags: 0
@@ -4386,7 +4854,7 @@ GameObject:
   - component: {fileID: 1980937333}
   - component: {fileID: 1980937334}
   m_Layer: 5
-  m_Name: Camera
+  m_Name: Knob 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4461,7 +4929,19 @@ MonoBehaviour:
   _graphic: {fileID: 1616033460}
   _onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Knob4
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2069522522
 GameObject:
   m_ObjectHideFlags: 0
@@ -4475,7 +4955,7 @@ GameObject:
   - component: {fileID: 2069522525}
   - component: {fileID: 2069522524}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4545,10 +5025,34 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2069522525}
   _onButtonDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button1
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _onButtonUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220649611}
+        m_TargetAssemblyTypeName: Dcam.InputHandle, DcamMetadata
+        m_MethodName: set_Button1
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2069522525
 MonoBehaviour:
   m_ObjectHideFlags: 0
