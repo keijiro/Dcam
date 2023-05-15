@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Dcam {
 
-public sealed class DcamReceiver : MonoBehaviour
+public sealed class MetadataReceiver : MonoBehaviour
 {
     void Update()
     {
