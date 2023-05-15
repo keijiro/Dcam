@@ -94,6 +94,12 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "jp.keijiro.dcam.metadata": {
+      "version": "file:../../DcamMetadata",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "jp.keijiro.klak.math": {
       "version": "2.0.0",
       "depth": 0,
