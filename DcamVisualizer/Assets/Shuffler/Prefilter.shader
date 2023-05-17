@@ -3,6 +3,7 @@ Shader "Shuffler/Prefilter"
     Properties
     {
         _MainTex("", 2D) = "gray" {}
+        _LutTexture("", 3D) = "" {}
         _Layer1Texture("", 2D) = "black" {}
         _Layer2Texture("", 2D) = "black" {}
         _Layer1Color("", Color) = (1, 1, 1, 1)
@@ -18,6 +19,7 @@ CGINCLUDE
 
 sampler2D _MainTex;
 float4 _MainTex_TexelSize;
+sampler3D _LutTexture;
 sampler2D _Layer1Texture;
 sampler2D _Layer2Texture;
 float4x4 _Layer1Matrix;
@@ -53,7 +55,7 @@ float Luma(float3 c)
 // Input: Source texture sampling
 float3 SampleSource(float2 uv)
 {
-    return LinearToSRGB(tex2D(_MainTex, uv).rgb);
+    return tex3D(_LutTexture, LinearToSRGB(tex2D(_MainTex, uv).rgb));
 }
 
 // Output: Final composition with title/overlay

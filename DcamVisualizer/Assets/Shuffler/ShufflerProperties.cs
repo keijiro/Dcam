@@ -19,6 +19,7 @@ public sealed partial class Shuffler
     [SerializeField] Color _titleColor = Color.white;
     [SerializeField] Texture2D _overlayTexture = null;
     [SerializeField] Color _overlayColor = Color.white;
+    [SerializeField] Texture3D _lutTexture = null;
 
     [Header("Flip animation")]
     [SerializeField] float _flipDuration = 0.175f;

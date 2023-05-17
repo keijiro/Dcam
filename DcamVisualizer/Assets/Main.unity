@@ -3371,6 +3371,7 @@ MonoBehaviour:
   _titleColor: {r: 1, g: 1, b: 1, a: 1}
   _overlayTexture: {fileID: 2800000, guid: 1d6072991e8994250a6bdcacfcbf3be8, type: 3}
   _overlayColor: {r: 1, g: 0, b: 0, a: 1}
+  _lutTexture: {fileID: 8534537815417165676, guid: 244beb38c4aca46d38429ea743939884, type: 3}
   _flipDuration: 0.16
   _queueLength: 11
   _insertionCount: 6

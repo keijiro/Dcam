@@ -45,7 +45,7 @@ public sealed partial class Shuffler
     async Awaitable InitObjects()
     {
         // Prefilter
-        _prefilter = new Prefilter(ImageWidth, ImageHeight, _prefilterShader)
+        _prefilter = new Prefilter(ImageWidth, ImageHeight, _prefilterShader, _lutTexture)
           { Layer1Texture = _titleTexture, Layer2Texture = _overlayTexture };
 
         // Frame queues

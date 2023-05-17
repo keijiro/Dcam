@@ -21,9 +21,10 @@ public sealed class Prefilter
 
     #region Public methods
 
-    public Prefilter(int width, int height, Shader shader)
+    public Prefilter(int width, int height, Shader shader, Texture3D lut)
     {
         _material = new Material(shader);
+        _material.SetTexture("_LutTexture", lut);
         Output = new RenderTexture(width, height, 0);
     }
 
