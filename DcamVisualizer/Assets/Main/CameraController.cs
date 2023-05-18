@@ -16,7 +16,7 @@ public sealed class CameraController : MonoBehaviour
 
     #region Public methods
 
-    public float Strength { get; set; } = 1;
+    public float Strength { get; set; } = 0;
 
     public void RenewTarget()
     {
@@ -41,10 +41,7 @@ public sealed class CameraController : MonoBehaviour
     #region MonoBehaviour implementation
 
     void Start()
-    {
-        _random = new Random(8943);
-        RenewTarget();
-    }
+      => _random = new Random(8943);
 
     void Update()
     {

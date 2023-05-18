@@ -48,7 +48,15 @@ public sealed class Configurator : MonoBehaviour
     Shuffler _target;
 
     void Start()
-      => _target = FindFirstObjectByType<Shuffler>();
+    {
+        _target = FindFirstObjectByType<Shuffler>();
+        SetPromptByIndex(0);
+        SetPrefilter(0);
+        InsertionLength(0);
+        SetStrengthAndStepCount(0);
+        SetTitleOpacity(0);
+        SetOverlayOpacity(0);
+    }
 
     #endregion
 }
