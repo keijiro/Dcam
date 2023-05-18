@@ -715,6 +715,8 @@ Transform:
   - {fileID: 1922164476}
   - {fileID: 907993145}
   - {fileID: 896773683}
+  - {fileID: 1983781294}
+  - {fileID: 1910984583}
   - {fileID: 1645814938}
   - {fileID: 943877069}
   - {fileID: 899915515}
@@ -1247,14 +1249,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prompts:
-  - Surrealistic painting by J. C. Leyendecker
-  - Surrealistic painting by Rene Magritte
-  - Surrealistic painting by Arthur Rackham
-  - Surrealistic painting by Alphonse Mucha
-  - Surrealistic painting by Winslow Homer
-  - Surrealistic painting by Winslow Homer
-  - masterpiece ukiyoe by Hiroshige
-  - masterpiece ukiyoe by Hiroshige
+  - Detailed surreal masterpiece illustration of an exploding human in a rococo style
+    room with detailed walls by J. C. Leyendecker
+  - Detailed surreal masterpiece painting of a cubist room by Henri Matisse
+  - Detailed surreal masterpiece painting of a medieval room by Winslow Homer
+  - Detailed surreal masterpiece sketch of a devil in the hell by Arthur Rackham
+  - Detailed surreal ukiyoe by Hiroshige
+  - Detailed surreal masterpiece illustration of an exploding human in a rococo style
+    room with detailed walls by J. C. Leyendecker
+  - Detailed surreal masterpiece painting of a cubist room by Henri Matisse
+  - Detailed surreal masterpiece painting of a medieval room by Winslow Homer
+  - Detailed surreal masterpiece sketch of a devil in the hell by Arthur Rackham
+  - Detailed surreal ukiyoe by Hiroshige
   _titleColor: {r: 1, g: 1, b: 1, a: 0.50980395}
   _overlayColor: {r: 1, g: 0, b: 0, a: 0.6666667}
 --- !u!114 &771488620
@@ -1528,7 +1534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttonIndex: 13
-  _value: 5
+  _value: 3
   _event:
     m_PersistentCalls:
       m_Calls:
@@ -1649,7 +1655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttonIndex: 12
-  _value: 4
+  _value: 2
   _event:
     m_PersistentCalls:
       m_Calls:
@@ -2195,7 +2201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttonIndex: 10
-  _value: 2
+  _value: 0
   _event:
     m_PersistentCalls:
       m_Calls:
@@ -2255,7 +2261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7df6139745244b16999152a490d5358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _keys: 290000002a0000002b0000002c0000002d0000002e0000002f00000030000000
+  _keys: 290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000
   _intTarget:
     m_PersistentCalls:
       m_Calls:
@@ -2748,13 +2754,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttonIndex: 9
-  _value: 1
+  _value: 9
   _event:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 771488619}
         m_TargetAssemblyTypeName: Configurator, Assembly-CSharp
-        m_MethodName: SetPrefilter
+        m_MethodName: SetPromptByIndex
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3241,6 +3247,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907054731}
   m_CullTransparentMesh: 1
+--- !u!1 &1910984582
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1910984583}
+  - component: {fileID: 1910984584}
+  m_Layer: 0
+  m_Name: Button 15
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1910984583
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910984582}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 501289137}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1910984584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910984582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db12261856704444899f58645a99c48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttonIndex: 15
+  _value: 5
+  _event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 771488619}
+        m_TargetAssemblyTypeName: Configurator, Assembly-CSharp
+        m_MethodName: SetPrefilter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1917421181
 GameObject:
   m_ObjectHideFlags: 0
@@ -3452,7 +3519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttonIndex: 11
-  _value: 3
+  _value: 1
   _event:
     m_PersistentCalls:
       m_Calls:
@@ -3567,6 +3634,67 @@ Transform:
   m_Father: {fileID: 771488618}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1983781293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1983781294}
+  - component: {fileID: 1983781295}
+  m_Layer: 0
+  m_Name: Button 14
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1983781294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983781293}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 501289137}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1983781295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983781293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db12261856704444899f58645a99c48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttonIndex: 14
+  _value: 4
+  _event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 771488619}
+        m_TargetAssemblyTypeName: Configurator, Assembly-CSharp
+        m_MethodName: SetPrefilter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2079305385
 GameObject:
   m_ObjectHideFlags: 0
@@ -3753,13 +3881,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttonIndex: 8
-  _value: 0
+  _value: 8
   _event:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 771488619}
         m_TargetAssemblyTypeName: Configurator, Assembly-CSharp
-        m_MethodName: SetPrefilter
+        m_MethodName: SetPromptByIndex
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
