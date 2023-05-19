@@ -41,6 +41,22 @@ public sealed class Configurator : MonoBehaviour
         _target.OverlayColor = color;
     }
 
+    public float AudioSensitivity { get; set; }
+
+    #endregion
+
+    #region Audio input to noise level
+
+    float _audioLevel;
+
+    public float AudioLevel { get => _audioLevel; set => SetAudioLevel(value); }
+
+    void SetAudioLevel(float level)
+    {
+        _audioLevel = level;
+        _target.NoiseLevel = level * AudioSensitivity;
+    }
+
     #endregion
 
     #region MonoBehaviour implementation
@@ -56,6 +72,7 @@ public sealed class Configurator : MonoBehaviour
         SetStrengthAndStepCount(0);
         SetTitleOpacity(0);
         SetOverlayOpacity(0);
+        SetAudioLevel(0);
     }
 
     #endregion

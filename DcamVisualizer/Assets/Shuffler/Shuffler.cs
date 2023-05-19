@@ -70,6 +70,9 @@ public sealed partial class Shuffler : MonoBehaviour
         _bgParams.props.SetFloat("_Progress", Mathf.Clamp01(_flipTime));
         _fgParams.props.SetFloat("_Progress", Mathf.Clamp01(fgTime));
 
+        _bgParams.props.SetFloat("_NoiseLevel", _noiseLevel);
+        _fgParams.props.SetFloat("_NoiseLevel", _noiseLevel);
+
         Graphics.RenderMesh(_bgParams.rparams, _pageMesh, 0, _bgParams.matrix);
         Graphics.RenderMesh(_fgParams.rparams, _pageMesh, 0, _fgParams.matrix);
     }

@@ -722,6 +722,7 @@ Transform:
   - {fileID: 899915515}
   - {fileID: 345308163}
   - {fileID: 1713390047}
+  - {fileID: 1724452123}
   m_Father: {fileID: 1626771199}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1233,6 +1234,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1976602535}
+  - {fileID: 1253295335}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2156,6 +2158,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225450710}
   m_CullTransparentMesh: 1
+--- !u!1 &1253295333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1253295335}
+  - component: {fileID: 1253295334}
+  m_Layer: 0
+  m_Name: Audio Input
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1253295334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253295333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c3e183ec27ba64d83e010bf18edb92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _useDefaultDevice: 1
+  _deviceID: 
+  _channel: 0
+  _filterType: 1
+  _autoGain: 1
+  _gain: 6
+  _dynamicRange: 12
+  _smoothFall: 1
+  _fallSpeed: 0.95
+  _propertyBinders:
+  - rid: 2168085629217275904
+  references:
+    version: 2
+    RefIds:
+    - rid: 2168085629217275904
+      type: {class: FloatPropertyBinder, ns: Lasp, asm: Lasp.Runtime}
+      data:
+        Enabled: 1
+        Target: {fileID: 771488619}
+        PropertyName: AudioLevel
+        _propertyType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+        Value0: 0
+        Value1: 1
+--- !u!4 &1253295335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253295333}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 771488618}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1258858318
 GameObject:
   m_ObjectHideFlags: 0
@@ -2649,6 +2719,69 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dropdown: {fileID: 34276325}
+--- !u!1 &1626837597
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1626837598}
+  - component: {fileID: 1626837599}
+  m_Layer: 0
+  m_Name: Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1626837598
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626837597}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1976602535}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1626837599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626837597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7df6139745244b16999152a490d5358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _keys: 3d000000400000003e000000
+  _intTarget:
+    m_PersistentCalls:
+      m_Calls: []
+  _floatTarget:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 771488619}
+        m_TargetAssemblyTypeName: Configurator, Assembly-CSharp
+        m_MethodName: set_AudioSensitivity
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1645814937
 GameObject:
   m_ObjectHideFlags: 0
@@ -2931,6 +3064,66 @@ MonoBehaviour:
       - m_Target: {fileID: 350411052}
         m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
         m_MethodName: set_Strength
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &1724452122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1724452123}
+  - component: {fileID: 1724452124}
+  m_Layer: 0
+  m_Name: Knob 5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1724452123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724452122}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 501289137}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1724452124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724452122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869f6ddca9fa7416c9c261bee2d8d576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _knobIndex: 5
+  _event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 771488619}
+        m_TargetAssemblyTypeName: Configurator, Assembly-CSharp
+        m_MethodName: set_AudioSensitivity
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3442,6 +3635,7 @@ MonoBehaviour:
   _flipDuration: 0.16
   _queueLength: 11
   _insertionCount: 6
+  _noiseLevel: 0.5
   _resourceDir: StableDiffusion
   _source: {fileID: 1918750915}
   _camera: {fileID: 350411052}
@@ -3631,6 +3825,7 @@ Transform:
   - {fileID: 457926608}
   - {fileID: 652729893}
   - {fileID: 266669541}
+  - {fileID: 1626837598}
   m_Father: {fileID: 771488618}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

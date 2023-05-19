@@ -488,9 +488,9 @@ PlayerSettings:
   enableInternalProfiler: 0
   logObjCUncaughtExceptions: 1
   enableCrashReportAPI: 0
-  cameraUsageDescription: Allow it to use the webcam as an image input.
+  cameraUsageDescription: Allow the app to enable external video input.
   locationUsageDescription: 
-  microphoneUsageDescription: 
+  microphoneUsageDescription: Allow the app to enable audio reactivity.
   bluetoothUsageDescription: 
   macOSTargetOSVersion: 10.13.0
   switchNMETAOverride: 

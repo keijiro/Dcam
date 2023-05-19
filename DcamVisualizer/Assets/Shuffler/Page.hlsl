@@ -1,3 +1,5 @@
+#include "Packages/jp.keijiro.noiseshader/Shader/SimplexNoise2D.hlsl"
+
 // Pseudo ambient occlusion
 float ShufflerOcclusion(float2 uv, float size, float ext, float aspect)
 {
@@ -20,7 +22,7 @@ float3 SampleShuffler
 // Custom node function
 void ShufflerFragment_float
   (UnityTexture2D tex1, UnityTexture2D tex2,
-   float2 uv, float time, float blur,
+   float2 uv, float time, float blur, float nlevel,
    float occ_size, float occ_ext, float occ_str, float aspect,
    out float3 output, out float alpha)
 {
@@ -36,7 +38,13 @@ void ShufflerFragment_float
     for (uint i = 0; i < SampleCount; i++)
         acc += SampleShuffler(tex1, tex2, uv, t0 + dt * i);
 
+    // Noise animation
+    float nth = nlevel * 0.2;
+    float snoise = SimplexNoise(float2(uv.x * 7, _Time.y * 4));
+    float mask = smoothstep(nth - 0.01, nth, abs(snoise));
+
     // Composition
-    output = (1 - occ * occ_str) * acc / SampleCount;
+    output = (1 - occ * occ_str) * acc / SampleCount * mask;
     alpha = 1 - length(max(abs(uv - 0.5) - 0.45, 0)) / 0.05;
+
 }

@@ -25,6 +25,7 @@ public sealed partial class Shuffler
     [SerializeField] float _flipDuration = 0.175f;
     [SerializeField] int _queueLength = 9;
     [SerializeField] int _insertionCount = 5;
+    [SerializeField] float _noiseLevel = 0.5f;
 
     [Header("Compile-time settings")]
     [SerializeField] string _resourceDir = "StableDiffusion";
@@ -67,6 +68,9 @@ public sealed partial class Shuffler
 
     public int InsertionCount
       { get => _insertionCount; set => _insertionCount = value; }
+
+    public float NoiseLevel
+      { get => _noiseLevel; set => _noiseLevel = value; }
 
     #endregion
 }
