@@ -8,7 +8,7 @@ public unsafe struct InputState
 {
     #region Data members
 
-    fixed byte Buttons[2];
+    fixed byte Buttons[4];
     fixed byte Knobs[8];
 
     #endregion

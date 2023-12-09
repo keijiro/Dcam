@@ -8,7 +8,7 @@ public sealed class InputHandle : MonoBehaviour
 {
     #region Internal state data
 
-    bool[] _buttons = new bool[16];
+    bool[] _buttons = new bool[32];
     float[] _knobs = new float[8];
 
     #endregion
@@ -23,6 +23,7 @@ public sealed class InputHandle : MonoBehaviour
     public bool Button5  { get => _buttons[ 5]; set => _buttons[ 5] = value; }
     public bool Button6  { get => _buttons[ 6]; set => _buttons[ 6] = value; }
     public bool Button7  { get => _buttons[ 7]; set => _buttons[ 7] = value; }
+
     public bool Button8  { get => _buttons[ 8]; set => _buttons[ 8] = value; }
     public bool Button9  { get => _buttons[ 9]; set => _buttons[ 9] = value; }
     public bool Button10 { get => _buttons[10]; set => _buttons[10] = value; }
@@ -31,6 +32,24 @@ public sealed class InputHandle : MonoBehaviour
     public bool Button13 { get => _buttons[13]; set => _buttons[13] = value; }
     public bool Button14 { get => _buttons[14]; set => _buttons[14] = value; }
     public bool Button15 { get => _buttons[15]; set => _buttons[15] = value; }
+
+    public bool Button16 { get => _buttons[16]; set => _buttons[16] = value; }
+    public bool Button17 { get => _buttons[17]; set => _buttons[17] = value; }
+    public bool Button18 { get => _buttons[18]; set => _buttons[18] = value; }
+    public bool Button19 { get => _buttons[19]; set => _buttons[19] = value; }
+    public bool Button20 { get => _buttons[20]; set => _buttons[20] = value; }
+    public bool Button21 { get => _buttons[21]; set => _buttons[21] = value; }
+    public bool Button22 { get => _buttons[22]; set => _buttons[22] = value; }
+    public bool Button23 { get => _buttons[23]; set => _buttons[23] = value; }
+
+    public bool Button24 { get => _buttons[24]; set => _buttons[24] = value; }
+    public bool Button25 { get => _buttons[25]; set => _buttons[25] = value; }
+    public bool Button26 { get => _buttons[26]; set => _buttons[26] = value; }
+    public bool Button27 { get => _buttons[27]; set => _buttons[27] = value; }
+    public bool Button28 { get => _buttons[28]; set => _buttons[28] = value; }
+    public bool Button29 { get => _buttons[29]; set => _buttons[29] = value; }
+    public bool Button30 { get => _buttons[30]; set => _buttons[30] = value; }
+    public bool Button31 { get => _buttons[31]; set => _buttons[31] = value; }
 
     public float Knob0  { get => _knobs[ 0]; set => _knobs[ 0] = value; }
     public float Knob1  { get => _knobs[ 1]; set => _knobs[ 1] = value; }
@@ -62,17 +81,13 @@ public sealed class InputHandle : MonoBehaviour
     {
         var state = new InputState();
 
-        var bdata0 = 0;
-        var bdata1 = 0;
-
-        for (var bit = 0; bit < 8; bit++)
+        for (var i = 0; i < 4; i++)
         {
-            if (_buttons[bit + 0]) bdata0 += 1 << bit;
-            if (_buttons[bit + 8]) bdata1 += 1 << bit;
+            var bdata = 0;
+            for (var bit = 0; bit < 8; bit++)
+                if (_buttons[8 * i + bit]) bdata += 1 << bit;
+            state.SetButtonData(i, bdata);
         }
-
-        state.SetButtonData(0, bdata0);
-        state.SetButtonData(1, bdata1);
 
         for (var i = 0; i < 8; i++)
             state.SetKnobData(i, (int)(_knobs[i] * 255));
@@ -82,13 +97,11 @@ public sealed class InputHandle : MonoBehaviour
 
     public void UpdateState(in InputState state)
     {
-        var bdata0 = state.GetButtonData(0);
-        var bdata1 = state.GetButtonData(1);
-
-        for (var bit = 0; bit < 8; bit++)
+        for (var i = 0; i < 4; i++)
         {
-            _buttons[bit + 0] = (bdata0 & (1 << bit)) != 0;
-            _buttons[bit + 8] = (bdata1 & (1 << bit)) != 0;
+            var bdata = state.GetButtonData(i);
+            for (var bit = 0; bit < 8; bit++)
+                _buttons[8 * i + bit] = (bdata & (1 << bit)) != 0;
         }
 
         for (var i = 0; i < 8; i++)
