@@ -1,6 +1,8 @@
 Dcam
 ====
 
+![GIF](https://github.com/keijiro/Dcam/assets/343936/8f58dc73-7209-46fb-a33c-6a95b2688f98)
+
 Dcam is an experimental project that applies the Stable Diffusion image-to-image process to a real-time video input.
 
 Dcam uses Apple's Core ML port of Stable Diffusion (ml-stable-diffusion) to run the pipeline on macOS.
@@ -11,6 +13,7 @@ I used this project in Channel 23 and other events for concert visuals.
 System requirements
 -------------------
 
+- Unity 2023.2
 - macOS 14 Sonoma
 - Mac computer with many GPU cores (M2 Max or later models are recommended)
 - iPhone with triple lenses (iPhone 13 Pro or later models)
