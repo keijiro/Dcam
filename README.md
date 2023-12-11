@@ -1,14 +1,16 @@
 Dcam
 ====
 
-![GIF](https://github.com/keijiro/Dcam/assets/343936/8f58dc73-7209-46fb-a33c-6a95b2688f98)
+![GIF](https://github.com/keijiro/Dcam/assets/343936/60f8ded1-24fc-4b2c-a367-36ca35702c52)
 
 Dcam is an experimental project that applies the Stable Diffusion image-to-image process to a real-time video input.
 
 Dcam uses Apple's Core ML port of Stable Diffusion (ml-stable-diffusion) to run the pipeline on macOS.
 It also uses the NDI protocol to stream video and controller inputs from iPhone to Mac over LAN.
 
-I used this project in Channel 23 and other events for concert visuals.
+I used this project in [Channel 23] and other events for concert visuals.
+
+[Channel 23]: https://www.youtube.com/watch?v=SjJJ-vSprtA
 
 System requirements
 -------------------
