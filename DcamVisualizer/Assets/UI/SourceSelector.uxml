@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1;" />
+    <ui:VisualElement name="Selector" style="flex-direction: row; align-items: center; position: absolute; top: 30px; left: 30px;">
+        <ui:Label text="Video Source" style="color: rgb(204, 204, 204);" />
+        <ui:DropdownField name="Dropdown" style="width: 500px;">
+            <Bindings>
+                <ui:DataBinding property="choices" data-source-path="SourceList" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:DropdownField>
+    </ui:VisualElement>
+</ui:UXML>

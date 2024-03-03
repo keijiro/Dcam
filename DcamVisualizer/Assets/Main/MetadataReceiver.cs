@@ -6,13 +6,17 @@ public sealed class MetadataReceiver : MonoBehaviour
 {
     void Update()
     {
+        // NDI receiver existence
+        var recv = GetComponent<Klak.Ndi.NdiReceiver>();
+        if (recv == null) return;
+
         // Deserialization
-        var xml = GetComponent<Klak.Ndi.NdiReceiver>().metadata;
+        var xml = recv.metadata;
         if (xml == null || xml.Length == 0) return;
-        var metadata = Metadata.Deserialize(xml);
+        var bin = Metadata.Deserialize(xml);
 
         // Input state update with the metadata
-        GetComponent<InputHandle>().InputState = metadata.InputState;
+        GetComponent<InputHandle>().InputState = bin.InputState;
     }
 }
 

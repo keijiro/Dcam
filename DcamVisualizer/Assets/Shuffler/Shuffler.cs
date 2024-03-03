@@ -14,7 +14,7 @@ public sealed partial class Shuffler : MonoBehaviour
             // Prefilter
             _prefilter.Layer1Color = _titleColor;
             _prefilter.Layer2Color = _overlayColor;
-            _prefilter.Apply(_source.Texture, _prefilterNumber);
+            _prefilter.Apply(_source.AsTexture, _prefilterNumber);
 
             // Push the previous "latest" frame to the queue.
             _frameQueue.Enqueue(_latestFrame);
