@@ -15,8 +15,8 @@ I used this project in [Channel 23] and other events for concert visuals.
 System requirements
 -------------------
 
-- Unity 2023.2
-- macOS 14 Sonoma
+- Unity 6
+- macOS 14 Sonoma or later
 - Mac computer with many GPU cores (M2 Max or later models are recommended)
 - iPhone with triple lenses (iPhone 13 Pro or later models)
 - Network connection (or USB connection; see below)
