@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Controller.uss?fileID=7433441132597879392&amp;guid=b36b7ae5b6d46491380e138eaaf62a9c&amp;type=3#Controller" />
-    <engine:VisualElement name="monitor" style="background-image: url(&quot;project://database/Assets/Camera.renderTexture?fileID=8400000&amp;guid=92ce0328f74b3423798d76e14a1b8648&amp;type=2#Camera&quot;); -unity-background-scale-mode: scale-to-fit; position: absolute; top: 0; left: 0; right: 0; bottom: 0; -unity-background-image-tint-color: rgb(101, 101, 101);" />
+    <engine:VisualElement name="monitor" style="background-image: url(&quot;project://database/Assets/Misc/Camera.renderTexture?fileID=8400000&amp;guid=92ce0328f74b3423798d76e14a1b8648&amp;type=2#Camera&quot;); -unity-background-scale-mode: scale-to-fit; position: absolute; top: 0; left: 0; right: 0; bottom: 0; -unity-background-image-tint-color: rgb(101, 101, 101);" />
     <engine:VisualElement name="controls" style="position: absolute; left: 80px; right: 80px; top: 40px; bottom: 40px;">
         <engine:VisualElement name="remote" data-source-type="Dcam.InputHandle, DcamMetadata" style="flex-grow: 1;">
             <engine:VisualElement name="row">
