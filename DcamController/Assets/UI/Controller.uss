@@ -1,0 +1,12 @@
+#row {
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+#controls Label {
+    font-size: 13.5px;
+}
+
+#spacer {
+    width: 20px;
+}

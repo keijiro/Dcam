@@ -1,0 +1,154 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Controller.uss?fileID=7433441132597879392&amp;guid=b36b7ae5b6d46491380e138eaaf62a9c&amp;type=3#Controller" />
+    <engine:VisualElement name="monitor" style="background-image: url(&quot;project://database/Assets/Camera.renderTexture?fileID=8400000&amp;guid=92ce0328f74b3423798d76e14a1b8648&amp;type=2#Camera&quot;); -unity-background-scale-mode: scale-to-fit; position: absolute; top: 0; left: 0; right: 0; bottom: 0; -unity-background-image-tint-color: rgb(101, 101, 101);" />
+    <engine:VisualElement name="controls" style="position: absolute; left: 80px; right: 80px; top: 40px; bottom: 40px;">
+        <engine:VisualElement name="remote" data-source-type="Dcam.InputHandle, DcamMetadata" style="flex-grow: 1;">
+            <engine:VisualElement name="row">
+                <VJUITK.VJButton label="Prompt 1">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Button0" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJButton>
+                <VJUITK.VJButton label="Prompt 2">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Button1" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJButton>
+                <VJUITK.VJButton label="Prompt 3">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Button2" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJButton>
+                <VJUITK.VJButton label="Prompt 4">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Button3" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJButton>
+                <VJUITK.VJButton label="Prompt 5">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Button4" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJButton>
+                <VJUITK.VJButton label="Prompt 6">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Button5" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJButton>
+            </engine:VisualElement>
+            <engine:VisualElement name="row">
+                <VJUITK.VJButton label="Prompt 7">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Button6" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJButton>
+                <VJUITK.VJButton label="Prompt 8">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Button7" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJButton>
+                <VJUITK.VJButton label="Prompt 9">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Button8" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJButton>
+                <VJUITK.VJButton label="Prompt 10">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Button9" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJButton>
+                <VJUITK.VJButton label="Prompt 11">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Button10" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJButton>
+                <VJUITK.VJButton label="Prompt 12">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Button11" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJButton>
+            </engine:VisualElement>
+            <engine:VisualElement name="row">
+                <VJUITK.VJButton label="Prefilter 1">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Button12" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJButton>
+                <VJUITK.VJButton label="Prefilter 2">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Button13" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJButton>
+                <VJUITK.VJButton label="Prefilter 3">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Button14" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJButton>
+                <VJUITK.VJButton label="Prefilter 4">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Button15" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJButton>
+                <VJUITK.VJButton label="Prefilter 5">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Button16" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJButton>
+                <VJUITK.VJButton label="Prefilter 6">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Button17" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJButton>
+            </engine:VisualElement>
+            <engine:VisualElement name="row">
+                <VJUITK.VJKnob label="Insert" high-value="1">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Knob0" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJKnob>
+                <VJUITK.VJKnob label="Strength" high-value="1">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Knob1" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJKnob>
+                <engine:VisualElement name="spacer" />
+                <VJUITK.VJKnob label="Title" high-value="1">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Knob2" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJKnob>
+                <VJUITK.VJKnob label="Overlay" high-value="1">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Knob3" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJKnob>
+                <engine:VisualElement name="spacer" />
+                <VJUITK.VJKnob label="Camera" high-value="1">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Knob4" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJKnob>
+                <VJUITK.VJKnob label="Temp" high-value="1">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Knob5" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJKnob>
+                <engine:VisualElement name="spacer" />
+                <VJUITK.VJKnob label="Audio" high-value="1">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Knob6" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJKnob>
+            </engine:VisualElement>
+        </engine:VisualElement>
+        <engine:VisualElement name="camera" style="position: absolute; right: 0; bottom: 0;">
+            <VJUITK.VJButton label="U. Wide" name="camera-ultrawide" />
+            <VJUITK.VJButton label="Wide" name="camera-wide" />
+            <VJUITK.VJButton label="Tele" name="camera-telephoto" />
+        </engine:VisualElement>
+        <engine:Label text="00:00:00" name="clock" data-source-type="Dcam.Clock, Assembly-CSharp" style="position: absolute; right: 0; color: rgb(255, 255, 255); top: 0; font-size: 24px;">
+            <Bindings>
+                <engine:DataBinding property="text" data-source-path="TimeText" binding-mode="ToTarget" />
+            </Bindings>
+        </engine:Label>
+    </engine:VisualElement>
+</engine:UXML>
