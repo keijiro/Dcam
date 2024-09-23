@@ -6,6 +6,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using ComputeUnits = MLStableDiffusion.ComputeUnits;
 using SDPipeline = MLStableDiffusion.Pipeline;
+using Scheduler = MLStableDiffusion.Scheduler;
 
 public sealed partial class Shuffler
 {
@@ -70,7 +71,9 @@ public sealed partial class Shuffler
 
         // Stable Diffusion pipeline
 #if ENABLE_MLSD
-        _sdPipeline = new SDPipeline(_sdPreprocess);
+        _sdPipeline = new SDPipeline(_sdPreprocess)
+          { Strength = 0.5f, Scheduler = Scheduler.Lcm,
+            StepCount = 4, GuidanceScale = 1.25f };
         Debug.Log("Loading the Stable Diffusion model...");
         await _sdPipeline.InitializeAsync(ResourceInfo, ComputeUnits.CpuAndGpu);
         Debug.Log("Done.");
@@ -106,10 +109,7 @@ public sealed partial class Shuffler
         if (_sdPipeline != null)
         {
             _sdPipeline.Prompt = _prompt;
-            _sdPipeline.Strength = _strength;
-            _sdPipeline.StepCount = _stepCount;
             _sdPipeline.Seed = Random.Range(1, 2000000000);
-            _sdPipeline.GuidanceScale = _guidance;
             await _sdPipeline.RunAsync
               (_latestFrame, _fgFrames.back, destroyCancellationToken);
         }

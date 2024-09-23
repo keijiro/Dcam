@@ -105,37 +105,32 @@
                         <engine:DataBinding property="value" data-source-path="Knob0" binding-mode="ToSource" />
                     </Bindings>
                 </VJUITK.VJKnob>
-                <VJUITK.VJKnob label="Strength" high-value="1">
+                <engine:VisualElement name="spacer" />
+                <VJUITK.VJKnob label="Title" high-value="1">
                     <Bindings>
                         <engine:DataBinding property="value" data-source-path="Knob1" binding-mode="ToSource" />
                     </Bindings>
                 </VJUITK.VJKnob>
-                <engine:VisualElement name="spacer" />
-                <VJUITK.VJKnob label="Title" high-value="1">
-                    <Bindings>
-                        <engine:DataBinding property="value" data-source-path="Knob2" binding-mode="ToSource" />
-                    </Bindings>
-                </VJUITK.VJKnob>
                 <VJUITK.VJKnob label="Overlay" high-value="1">
                     <Bindings>
-                        <engine:DataBinding property="value" data-source-path="Knob3" binding-mode="ToSource" />
+                        <engine:DataBinding property="value" data-source-path="Knob2" binding-mode="ToSource" />
                     </Bindings>
                 </VJUITK.VJKnob>
                 <engine:VisualElement name="spacer" />
                 <VJUITK.VJKnob label="Camera" high-value="1">
                     <Bindings>
-                        <engine:DataBinding property="value" data-source-path="Knob4" binding-mode="ToSource" />
+                        <engine:DataBinding property="value" data-source-path="Knob3" binding-mode="ToSource" />
                     </Bindings>
                 </VJUITK.VJKnob>
                 <VJUITK.VJKnob label="Temp" high-value="1">
                     <Bindings>
-                        <engine:DataBinding property="value" data-source-path="Knob5" binding-mode="ToSource" />
+                        <engine:DataBinding property="value" data-source-path="Knob4" binding-mode="ToSource" />
                     </Bindings>
                 </VJUITK.VJKnob>
                 <engine:VisualElement name="spacer" />
                 <VJUITK.VJKnob label="Audio" high-value="1">
                     <Bindings>
-                        <engine:DataBinding property="value" data-source-path="Knob6" binding-mode="ToSource" />
+                        <engine:DataBinding property="value" data-source-path="Knob5" binding-mode="ToSource" />
                     </Bindings>
                 </VJUITK.VJKnob>
             </engine:VisualElement>

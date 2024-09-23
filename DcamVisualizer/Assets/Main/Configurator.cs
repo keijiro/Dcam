@@ -21,12 +21,6 @@ public sealed class Configurator : MonoBehaviour
     public void InsertionLength(float param)
       => _target.InsertionCount = (int)(param * 5 + 1);
 
-    public void SetStrengthAndStepCount(float param)
-    {
-        _target.Strength = 0.3f + param * 0.4f;
-        _target.StepCount = (int)(12 - param * 4);
-    }
-
     public void SetTitleOpacity(float opacity)
     {
         var color = _titleColor;
@@ -69,7 +63,6 @@ public sealed class Configurator : MonoBehaviour
         SetPromptByIndex(0);
         SetPrefilter(0);
         InsertionLength(0);
-        SetStrengthAndStepCount(0);
         SetTitleOpacity(0);
         SetOverlayOpacity(0);
         SetAudioLevel(0);

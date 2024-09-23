@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -119,69 +118,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &100868814
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 100868815}
-  - component: {fileID: 100868816}
-  m_Layer: 0
-  m_Name: Strength
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &100868815
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100868814}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1976602535}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &100868816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100868814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7df6139745244b16999152a490d5358, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _keys: 1f00000025000000130000002000000022000000
-  _intTarget:
-    m_PersistentCalls:
-      m_Calls: []
-  _floatTarget:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 771488619}
-        m_TargetAssemblyTypeName: Configurator, Assembly-CSharp
-        m_MethodName: SetStrengthAndStepCount
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &266669540
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +192,7 @@ GameObject:
   - component: {fileID: 345308163}
   - component: {fileID: 345308164}
   m_Layer: 0
-  m_Name: Knob 3
+  m_Name: Knob 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -289,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 869f6ddca9fa7416c9c261bee2d8d576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _knobIndex: 3
+  _knobIndex: 2
   _event:
     m_PersistentCalls:
       m_Calls:
@@ -532,6 +468,7 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+  m_ScrollDeltaPerTick: 6
 --- !u!114 &487356940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,7 +547,6 @@ Transform:
   - {fileID: 1983781294}
   - {fileID: 1910984583}
   - {fileID: 1645814938}
-  - {fileID: 943877069}
   - {fileID: 899915515}
   - {fileID: 345308163}
   - {fileID: 1713390047}
@@ -1124,7 +1060,7 @@ GameObject:
   - component: {fileID: 899915515}
   - component: {fileID: 899915516}
   m_Layer: 0
-  m_Name: Knob 2
+  m_Name: Knob 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1157,7 +1093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 869f6ddca9fa7416c9c261bee2d8d576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _knobIndex: 2
+  _knobIndex: 1
   _event:
     m_PersistentCalls:
       m_Calls:
@@ -1225,66 +1161,6 @@ MonoBehaviour:
       - m_Target: {fileID: 771488619}
         m_TargetAssemblyTypeName: Configurator, Assembly-CSharp
         m_MethodName: SetPrefilter
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!1 &943877068
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 943877069}
-  - component: {fileID: 943877070}
-  m_Layer: 0
-  m_Name: Knob 1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &943877069
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 943877068}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 501289137}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &943877070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 943877068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 869f6ddca9fa7416c9c261bee2d8d576, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _knobIndex: 1
-  _event:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 771488619}
-        m_TargetAssemblyTypeName: Configurator, Assembly-CSharp
-        m_MethodName: SetStrengthAndStepCount
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1417,12 +1293,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!114 &1012035144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2085,6 +1961,9 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 01b166501c30c4fec8198c2f9018833e, type: 3}
   m_SortingOrder: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
 --- !u!114 &1626771205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2304,7 +2183,7 @@ GameObject:
   - component: {fileID: 1713390047}
   - component: {fileID: 1713390048}
   m_Layer: 0
-  m_Name: Knob 4
+  m_Name: Knob 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2337,7 +2216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 869f6ddca9fa7416c9c261bee2d8d576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _knobIndex: 4
+  _knobIndex: 3
   _event:
     m_PersistentCalls:
       m_Calls:
@@ -2364,7 +2243,7 @@ GameObject:
   - component: {fileID: 1724452123}
   - component: {fileID: 1724452124}
   m_Layer: 0
-  m_Name: Knob 5
+  m_Name: Knob 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2397,7 +2276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a62d0a4d36204585aa5caec1e0f1c17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _knobIndex: 5
+  _knobIndex: 4
   _target: {fileID: 750477158}
 --- !u!1 &1779478895
 GameObject:
@@ -2473,7 +2352,7 @@ GameObject:
   - component: {fileID: 1884033875}
   - component: {fileID: 1884033876}
   m_Layer: 0
-  m_Name: Knob 6
+  m_Name: Knob 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2506,7 +2385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 869f6ddca9fa7416c9c261bee2d8d576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _knobIndex: 6
+  _knobIndex: 5
   _event:
     m_PersistentCalls:
       m_Calls:
@@ -2628,9 +2507,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prompt: highly detailed surrealistic painting by J. C. Leyendecker
-  _strength: 0.45
-  _stepCount: 10
-  _guidance: 12
   _prefilterNumber: 0
   _titleTexture: {fileID: 2800000, guid: 5a25b6e176fc44274b27c7d5d6417586, type: 3}
   _titleColor: {r: 1, g: 1, b: 1, a: 0}
@@ -2638,8 +2514,8 @@ MonoBehaviour:
   _overlayColor: {r: 1, g: 0, b: 0, a: 0}
   _lutTexture: {fileID: 8534537815417165676, guid: 244beb38c4aca46d38429ea743939884, type: 3}
   _flipDuration: 0.16
-  _queueLength: 11
-  _insertionCount: 6
+  _queueLength: 8
+  _insertionCount: 5
   _noiseLevel: 0.5
   _resourceDir: StableDiffusion
   _source: {fileID: 1626771205}
@@ -2801,7 +2677,6 @@ Transform:
   m_Children:
   - {fileID: 1262684337}
   - {fileID: 2092705388}
-  - {fileID: 100868815}
   - {fileID: 1779478896}
   - {fileID: 457926608}
   - {fileID: 652729893}
@@ -2914,7 +2789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7df6139745244b16999152a490d5358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _keys: 2700000023000000170000001d0000001e0000000b000000
+  _keys: 1f0000002500000013000000200000002200000027000000
   _intTarget:
     m_PersistentCalls:
       m_Calls:

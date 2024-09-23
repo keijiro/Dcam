@@ -9,9 +9,6 @@ public sealed partial class Shuffler
 
     [Header("Stable Diffusion")]
     [SerializeField] string _prompt = "Surrealistic painting by J. C. Leyendecker";
-    [SerializeField] float _strength = 0.7f;
-    [SerializeField] int _stepCount = 7;
-    [SerializeField] float _guidance = 10;
 
     [Header("Prefilter")]
     [SerializeField] int _prefilterNumber = 0;
@@ -47,15 +44,6 @@ public sealed partial class Shuffler
 
     public string Prompt
       { get => _prompt; set => _prompt = value; }
-
-    public float Strength
-      { get => _strength; set => _strength = value; }
-
-    public int StepCount
-      { get => _stepCount; set => _stepCount = value; }
-
-    public float Guidance
-      { get => _guidance; set => _guidance = value; }
 
     public int Prefilter
       { get => _prefilterNumber; set => _prefilterNumber = value; }
