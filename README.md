@@ -27,10 +27,10 @@ which is handy for keeping a robust connection in a concert venue.
 About the Stable Diffusion model
 --------------------------------
 
-This project uses a Core ML Stable Diffusion model with a landscape aspect ratio (640x384).
+This project uses a sd-turbo model with a landscape aspect ratio (640x384).
 You can download the model from the Hugging Face repository below.
 
-https://huggingface.co/keijiro-tk/coreml-stable-diffusion-2-1-base-640x384
+https://huggingface.co/keijiro-tk/coreml-sd-turbo-640x384
 
 About the latency
 -----------------
