@@ -105,6 +105,11 @@
                         <engine:DataBinding property="value" data-source-path="Knob0" binding-mode="ToSource" />
                     </Bindings>
                 </VJUITK.VJKnob>
+                <VJUITK.VJToggle label="Boost">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="Knob6" binding-mode="ToSource" />
+                    </Bindings>
+                </VJUITK.VJToggle>
                 <engine:VisualElement name="spacer" />
                 <VJUITK.VJKnob label="Title" high-value="1">
                     <Bindings>

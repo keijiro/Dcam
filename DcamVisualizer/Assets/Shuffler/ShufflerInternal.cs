@@ -72,7 +72,7 @@ public sealed partial class Shuffler
         // Stable Diffusion pipeline
 #if ENABLE_MLSD
         _sdPipeline = new SDPipeline(_sdPreprocess)
-          { Strength = 0.5f, Scheduler = Scheduler.Lcm, StepCount = 4 };
+          { Scheduler = Scheduler.Lcm, StepCount = 4 };
         Debug.Log("Loading the Stable Diffusion model...");
         await _sdPipeline.InitializeAsync(ResourceInfo, ComputeUnits.CpuAndGpu);
         Debug.Log("Done.");
@@ -108,6 +108,7 @@ public sealed partial class Shuffler
         if (_sdPipeline != null)
         {
             _sdPipeline.Prompt = _prompt;
+            _sdPipeline.Strength = _strength;
             _sdPipeline.GuidanceScale = _guidance;
             _sdPipeline.Seed = Random.Range(1, 2000000000);
             await _sdPipeline.RunAsync

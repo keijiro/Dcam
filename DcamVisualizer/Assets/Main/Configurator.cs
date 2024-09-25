@@ -21,6 +21,9 @@ public sealed class Configurator : MonoBehaviour
     public void InsertionLength(float param)
       => _target.InsertionCount = (int)(param * 5 + 1);
 
+    public void SetBoost(float param)
+      => _target.Strength = 0.5f + 0.3f * param;
+
     public void SetTitleOpacity(float opacity)
     {
         var color = _titleColor;
